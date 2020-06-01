@@ -1,6 +1,8 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -14,7 +16,12 @@ public class MainFile extends Application {
     public void start(Stage ps){
         Pane mainPane = new Pane();
 
-        //Build onto pane here
+        Image board = new Image("clueboard.jpg");
+        ImageView boardImageView = new ImageView();
+        boardImageView.setImage(board);
+        boardImageView.setFitWidth(650);
+        boardImageView.setFitHeight(650);
+        mainPane.getChildren().add(boardImageView);
 
         ps.setTitle("Clue");
         Scene scene = new Scene(mainPane, 1000,1000); //I just put random numbers for now
@@ -52,9 +59,7 @@ public class MainFile extends Application {
 
         submit.setDisable(true);
 
-        knife.setOnAction(e -> {
-            weaponChosen(submit); //function
-        } );
+        knife.setOnAction(e -> weaponChosen(submit));
         gun.setOnAction(e-> weaponChosen(submit));
         candlestick.setOnAction(e-> weaponChosen(submit));
         leadPipe.setOnAction(e-> weaponChosen(submit));
@@ -78,7 +83,7 @@ public class MainFile extends Application {
     }
     public void weaponChosen(Button submit){
         weaponAns=true;
-        if(weaponAns==true && personAns==true){
+        if(weaponAns && personAns){
             submit.setDisable(false);
         }
     }
