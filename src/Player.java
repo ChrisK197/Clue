@@ -3,10 +3,19 @@ public class Player {
     private String name;
     private int num;
     private String currentRoom = null;
-    public Player(String name, int num, int numOfCards){
+    private int numCards = 0;
+    public Player(String name, int num){
         this.name = name;
         this.num = num;
-        cards = new Card[numOfCards];
+        //Players 1 and 2 will always have one more card than Players 3 and 4
+        if(num == 1 || num == 2)
+            cards = new Card[5];
+        else
+            cards = new Card[4];
+    }
+
+    public void addCard(Card c){
+        cards[numCards++] = c;
     }
 
     public Card[] getCards() {

@@ -9,6 +9,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class MainFile extends Application {
     private boolean weaponAns = false;
     private boolean personAns = false;
@@ -88,4 +90,52 @@ public class MainFile extends Application {
         }
     }
 
+    private ArrayList<Card> distributeCards(Player p1, Player p2, Player p3, Player p4){ //21 cards total, 18 after the 3 are placed in the envelope
+        //Takes the player objects and returns the envelope
+        String[] people = {"Professor Plum", "Mr. Green", "Colonel Mustard", "Miss Scarlet", "Mrs. White", "Mrs. Peacock"};
+        String[] weapons = {"Gun", "Candlestick", "Rope", "Knife", "Lead Pipe", "Wrench"};
+        String[] rooms = {"Study", "Hall", "Lounge", "Dining Room", "Kitchen", "Ballroom", "Conservatory", "Billiard Room", "Library"};
+        ArrayList<Card> peopleCards = new ArrayList<>();
+        ArrayList<Card> weaponCards = new ArrayList<>();
+        ArrayList<Card> roomCards = new ArrayList<>();
+        for(String s: people){
+            peopleCards.add(new Card(s, "person"));
+        }
+        for(String s: weapons){
+            weaponCards.add(new Card(s, "weapon"));
+        }
+        for(String s: rooms){
+            roomCards.add(new Card(s, "room"));
+        }
+        //putting cards in envelope
+        //The envelope will have the cards in the order, person, weapon, room
+        ArrayList<Card> envelope = new ArrayList<>();
+        envelope.add(peopleCards.remove((int)(Math.random() * peopleCards.size())));
+        envelope.add(weaponCards.remove((int)(Math.random() * weaponCards.size())));
+        envelope.add(roomCards.remove((int)(Math.random() * roomCards.size())));
+
+        int total = peopleCards.size() + weaponCards.size() + roomCards.size();
+        Player[] p = {p1, p2, p3, p4};
+        int currplayer = 0; // Players 1 and 2 will always have one extra card
+        ArrayList<Card> arr;
+        while(peopleCards.size() != 0 || weaponCards.size() != 0 || roomCards.size() != 0){
+            int num = (int)(Math.random() * total);
+            arr = peopleCards;
+            if(num >= peopleCards.size()){
+                num -= peopleCards.size();
+                arr = weaponCards;
+                if(num >= weaponCards.size()){
+                    num-= weaponCards.size();
+                    arr = roomCards;
+                }
+            }
+            p[currplayer].addCard(arr.remove(num));
+            total = peopleCards.size() + weaponCards.size() + roomCards.size();
+            currplayer++;
+            if(currplayer >= 4)
+                currplayer = 0;
+        }
+
+        return envelope;
+    }
 }
