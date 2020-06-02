@@ -18,6 +18,26 @@ public class MainFile extends Application {
     public void start(Stage ps){
         Pane mainPane = new Pane();
 
+        Image p1image = new Image("green.png");
+        Player p1 = new Player(p1image, "Mr. Green", 1);
+        ImageView p1view = p1.getImageView();
+        p1view.setImage(p1image);
+        p1view.setFitWidth(40);
+        p1view.setFitHeight(40);
+        p1view.setX(610);
+        p1view.setY(570);
+        mainPane.getChildren().add(p1view);
+
+        Image p2image = new Image("mustard.png");
+        Player p2 = new Player(p2image, "Colonel Mustard", 2);
+        ImageView p2view = p2.getImageView();
+        p2view.setImage(p2image);
+        p2view.setFitWidth(40);
+        p2view.setFitHeight(40);
+        p2view.setX(610);
+        p2view.setY(570);
+        mainPane.getChildren().add(p2view);
+
         Image board = new Image("clueboard.jpg");
         ImageView boardImageView = new ImageView();
         boardImageView.setImage(board);

@@ -1,10 +1,16 @@
+import javafx.scene.image.Image;
+
+import javafx.scene.image.ImageView;
+
 public class Player {
     private Card[] cards;
+    private ImageView icon;
     private String name;
     private int num;
     private String currentRoom = null;
     private int numCards = 0;
-    public Player(String name, int num){
+    public Player(Image image, String name, int num){
+        icon = new ImageView(image);
         this.name = name;
         this.num = num;
         //Players 1 and 2 will always have one more card than Players 3 and 4
@@ -16,6 +22,14 @@ public class Player {
 
     public void addCard(Card c){
         cards[numCards++] = c;
+    }
+
+    public ImageView getImageView() {
+        return icon;
+    }
+
+    public void setImageView(ImageView icon) {
+        this.icon = icon;
     }
 
     public Card[] getCards() {
