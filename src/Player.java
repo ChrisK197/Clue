@@ -55,4 +55,8 @@ public class Player {
     public void setCurrentRoom(String currentRoom) {
         this.currentRoom = currentRoom;
     }
+
+    public int getNumCards() {
+        return numCards;
+    }
 }

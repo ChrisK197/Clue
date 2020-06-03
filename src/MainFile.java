@@ -18,10 +18,16 @@ public class MainFile extends Application {
     public void start(Stage ps){
         Pane mainPane = new Pane();
 
+        Image board = new Image("clueboard.jpg");
+        ImageView boardImageView = new ImageView();
+        boardImageView.setImage(board);
+        boardImageView.setFitWidth(650);
+        boardImageView.setFitHeight(650);
+        mainPane.getChildren().add(boardImageView);
+
         Image p1image = new Image("green.png");
         Player p1 = new Player(p1image, "Mr. Green", 1);
         ImageView p1view = p1.getImageView();
-        p1view.setImage(p1image);
         p1view.setFitWidth(40);
         p1view.setFitHeight(40);
         p1view.setX(610);
@@ -31,19 +37,27 @@ public class MainFile extends Application {
         Image p2image = new Image("mustard.png");
         Player p2 = new Player(p2image, "Colonel Mustard", 2);
         ImageView p2view = p2.getImageView();
-        p2view.setImage(p2image);
         p2view.setFitWidth(40);
         p2view.setFitHeight(40);
         p2view.setX(610);
         p2view.setY(570);
         mainPane.getChildren().add(p2view);
 
-        Image board = new Image("clueboard.jpg");
-        ImageView boardImageView = new ImageView();
-        boardImageView.setImage(board);
-        boardImageView.setFitWidth(650);
-        boardImageView.setFitHeight(650);
-        mainPane.getChildren().add(boardImageView);
+        Player p3 = new Player(new Image("scarlet.png"), "Miss Scarlet", 3);
+        ImageView p3view = p3.getImageView();
+        p3view.setFitWidth(40);
+        p3view.setFitHeight(40);
+        p3view.setX(610);
+        p3view.setY(570);
+        mainPane.getChildren().add(p3view);
+
+        Player p4 = new Player(new Image("plum.png"), "Professor Plum", 4);
+        ImageView p4view = p4.getImageView();
+        p4view.setFitWidth(40);
+        p4view.setFitHeight(40);
+        p4view.setX(610);
+        p4view.setY(570);
+        mainPane.getChildren().add(p4view);
 
         ps.setTitle("Clue");
         Scene scene = new Scene(mainPane, 1000,1000); //I just put random numbers for now
