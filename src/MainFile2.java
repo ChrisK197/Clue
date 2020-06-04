@@ -1,17 +1,19 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class MainFile extends Application {
+public class MainFile2 extends Application {
     private boolean weaponAns = false;
     private boolean personAns = false;
 
@@ -24,40 +26,6 @@ public class MainFile extends Application {
         boardImageView.setFitWidth(650);
         boardImageView.setFitHeight(650);
         mainPane.getChildren().add(boardImageView);
-
-        Image p1image = new Image("green.png");
-        Player p1 = new Player(p1image, "Mr. Green", 1);
-        ImageView p1view = p1.getImageView();
-        p1view.setFitWidth(40);
-        p1view.setFitHeight(40);
-        p1view.setX(610);
-        p1view.setY(570);
-        mainPane.getChildren().add(p1view);
-
-        Image p2image = new Image("mustard.png");
-        Player p2 = new Player(p2image, "Colonel Mustard", 2);
-        ImageView p2view = p2.getImageView();
-        p2view.setFitWidth(40);
-        p2view.setFitHeight(40);
-        p2view.setX(610);
-        p2view.setY(570);
-        mainPane.getChildren().add(p2view);
-
-        Player p3 = new Player(new Image("scarlet.png"), "Miss Scarlet", 3);
-        ImageView p3view = p3.getImageView();
-        p3view.setFitWidth(40);
-        p3view.setFitHeight(40);
-        p3view.setX(610);
-        p3view.setY(570);
-        mainPane.getChildren().add(p3view);
-
-        Player p4 = new Player(new Image("plum.png"), "Professor Plum", 4);
-        ImageView p4view = p4.getImageView();
-        p4view.setFitWidth(40);
-        p4view.setFitHeight(40);
-        p4view.setX(610);
-        p4view.setY(570);
-        mainPane.getChildren().add(p4view);
 
         ps.setTitle("Clue");
         Scene scene = new Scene(mainPane, 1000,1000); //I just put random numbers for now
