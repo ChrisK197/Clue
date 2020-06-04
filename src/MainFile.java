@@ -59,6 +59,8 @@ public class MainFile extends Application {
         p4view.setY(570);
         mainPane.getChildren().add(p4view);
 
+        ArrayList<Card> envelope = distributeCards(p1, p2, p3, p4);
+
         ps.setTitle("Clue");
         Scene scene = new Scene(mainPane, 1000,1000); //I just put random numbers for now
         ps.setScene(scene);
