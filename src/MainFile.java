@@ -18,6 +18,8 @@ public class MainFile extends Application {
     //currGuess in order: player (who are asking) at 0, weapon at 1, person you are guessing at 2, room at 3
     private String[] currGuess = new String[4];
 
+    private int turnCounter = 0;
+
     public void start(Stage ps){
         Pane mainPane = new Pane();
 
@@ -28,8 +30,7 @@ public class MainFile extends Application {
         boardImageView.setFitHeight(650);
         mainPane.getChildren().add(boardImageView);
 
-        Image p1image = new Image("green.png");
-        Player p1 = new Player(p1image, "Mr. Green", 1);
+        Player p1 = new Player(new Image("green.png"), "Mr. Green", 1);
         ImageView p1view = p1.getImageView();
         p1view.setFitWidth(40);
         p1view.setFitHeight(40);
@@ -37,8 +38,7 @@ public class MainFile extends Application {
         p1view.setY(570);
         mainPane.getChildren().add(p1view);
 
-        Image p2image = new Image("mustard.png");
-        Player p2 = new Player(p2image, "Colonel Mustard", 2);
+        Player p2 = new Player(new Image("mustard.png"), "Colonel Mustard", 2);
         ImageView p2view = p2.getImageView();
         p2view.setFitWidth(40);
         p2view.setFitHeight(40);
@@ -62,8 +62,40 @@ public class MainFile extends Application {
         p4view.setY(570);
         mainPane.getChildren().add(p4view);
 
+        ArrayList<Card> envelope = distributeCards(p1, p2, p3, p4);
+
+        Tile[][] tiles = new Tile[23][24];
+        //Mr. Respass suggested a two-dim array for the board
+
+        Button diceRoll= new Button();
+        diceRoll.setText("Roll");
+        diceRoll.setPrefSize(50, 50);
+        //This is just the basic move function setup, not anything that would work as of now, TO DO
+        diceRoll.setOnAction(e->{
+            if (turnCounter == 0) {
+                p1.move();
+                turnCounter++;
+            }
+            else if (turnCounter == 1) {
+                p2.move();
+                turnCounter++;
+            }
+            else if (turnCounter == 2) {
+                p3.move();
+                turnCounter++;
+            }
+            else {
+                p4.move();
+                turnCounter = 0;
+            }
+        });
+        mainPane.getChildren().add(diceRoll);
+        diceRoll.setLayoutX(287);
+        diceRoll.setLayoutY(275);
+
         ps.setTitle("Clue");
-        Scene scene = new Scene(mainPane, 1000,1000); //I just put random numbers for now
+        Scene scene = new Scene(mainPane, 650,650);
+        //The dimensions fit the board almost exactly, so if you want to add a border to put things in just expand it
         ps.setScene(scene);
         ps.show();
 
