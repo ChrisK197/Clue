@@ -14,6 +14,9 @@ import java.util.ArrayList;
 public class MainFile extends Application {
     private boolean weaponAns = false;
     private boolean personAns = false;
+    private boolean playerAns = false;
+    //currGuess in order: player (who are asking) at 0, weapon at 1, person you are guessing at 2, room at 3
+    private String[] currGuess = new String[4];
 
     public void start(Stage ps){
         Pane mainPane = new Pane();
@@ -64,14 +67,15 @@ public class MainFile extends Application {
         ps.setScene(scene);
         ps.show();
 
-        guess();
+        guess(p1);
     }
-    public void guess(){
+    public void guess(Player p){
         Stage stage = new Stage();
         stage.setTitle("Guess");
 
-
-        Label labelfirst= new Label("Pick a weapon and a person. The room can only be the one you are in.");
+        Label playerLabel = new Label("Pick a player to ask.");
+        Label weaponLabel= new Label("Pick a weapon.");
+        Label personLabel= new Label("Pick a person");
         Label labelresponse= new Label();
 
 
@@ -124,39 +128,87 @@ public class MainFile extends Application {
         white.setToggleGroup(people);
         peacock.setToggleGroup(people);
 
-
-        plum.setOnAction(e -> personChosen(submit));
+        plum.setOnAction(e-> personChosen(submit));
         green.setOnAction(e-> personChosen(submit));
         mustard.setOnAction(e-> personChosen(submit));
         scarlet.setOnAction(e-> personChosen(submit));
         white.setOnAction(e-> personChosen(submit));
         peacock.setOnAction(e-> personChosen(submit));
 
+        //players
+        RadioButton p1, p2, p3, p4;
+        p1 =new RadioButton("Player 1");
+        p2= new RadioButton("Player 2");
+        p3= new RadioButton("Player 3");
+        p4= new RadioButton("Player 4");
 
-        HBox mainLayout = new HBox(20);
+        ToggleGroup player = new ToggleGroup();
+
+        p1.setToggleGroup(player);
+        p2.setToggleGroup(player);
+        p3.setToggleGroup(player);
+        p4.setToggleGroup(player);
+
+        int pNum = p.getNum();
+        if(pNum==1){
+            p1.setDisable(true);
+        }
+        else if (pNum==2){
+            p2.setDisable(true);
+        }
+        else if (pNum==3){
+            p3.setDisable(true);
+        }
+        else if (pNum==4){
+            p4.setDisable(true);
+        }
+        p1.setOnAction(e -> playerChosen(submit));
+        p2.setOnAction(e-> playerChosen(submit));
+        p3.setOnAction(e-> playerChosen(submit));
+        p4.setOnAction(e-> playerChosen(submit));
+
+        submit.setOnAction(e->{
+            currGuess[0] = ((RadioButton)(player.getSelectedToggle())).getText();
+            currGuess[1]=((RadioButton)(weapons.getSelectedToggle())).getText();
+            currGuess[2] = ((RadioButton)(people.getSelectedToggle())).getText();
+            currGuess[3] = p.getCurrentRoom();
+            for(int i=0; i<4; i++){
+                System.out.println(currGuess[i]);
+            }
+            stage.close();
+        });
+
+        HBox mainLayout = new HBox(7);
+        VBox playerLayout = new VBox(5);
         VBox weaponLayout= new VBox(5);
         VBox peopleLayout = new VBox(5);
 
-        mainLayout.getChildren().addAll(weaponLayout, peopleLayout);
-        weaponLayout.getChildren().addAll(labelfirst, knife, gun, candlestick, leadPipe, wrench, rope, submit, labelresponse);
-        peopleLayout.getChildren().addAll(plum, green, mustard, scarlet, white, peacock);
+        mainLayout.getChildren().addAll(playerLayout, weaponLayout, peopleLayout);
+        playerLayout.getChildren().addAll(playerLabel, p1, p2, p3, p4);
+        weaponLayout.getChildren().addAll(weaponLabel, knife, gun, candlestick, leadPipe, wrench, rope, submit, labelresponse);
+        peopleLayout.getChildren().addAll(personLabel, plum, green, mustard, scarlet, white, peacock);
 
         Scene scene1= new Scene(mainLayout, 400, 250);
         stage.setScene(scene1);
 
         stage.show();
         //http://www.learningaboutelectronics.com/Articles/Multiple-choice-test-question-in-JavaFX.php
-        //add multiple choice bubbles and stuff here
     }
     public void weaponChosen(Button submit){
         weaponAns=true;
-        if(weaponAns==true && personAns==true){
+        if(weaponAns==true && personAns==true && playerAns==true){
             submit.setDisable(false);
         }
     }
     public void personChosen(Button submit){
         personAns=true;
-        if(weaponAns==true && personAns==true){
+        if(weaponAns==true && personAns==true && playerAns ==true){
+            submit.setDisable(false);
+        }
+    }
+    public void playerChosen(Button submit){
+        playerAns=true;
+        if(weaponAns==true && personAns==true && playerAns ==true){
             submit.setDisable(false);
         }
     }
