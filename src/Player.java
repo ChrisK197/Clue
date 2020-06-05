@@ -76,18 +76,17 @@ public class Player {
 
     protected void move(){
         int roll = (int)(Math.random()*6)+1;
-        int roll2 = (int)(Math.random()*6)+1;
         Stage stage = new Stage();
         stage.setTitle("Roll");
         Pane p = new Pane();
-        Text t = new Text(115, 250, "Player " + num + " rolled a " + roll + " and a " + roll2);
+        Text t = new Text(115, 250, "Player " + num + " rolled a " + roll);
         t.setFont(new Font(26));
         p.getChildren().add(t);
         Scene ss = new Scene(p, 500, 500);
         stage.setScene(ss);
         stage.show();
 
-        roll += roll2; //Total roll value
+        //roll += roll2; //Total roll value
 
         mediaPlayer.setVolume(100);
         mediaPlayer.play();
