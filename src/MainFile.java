@@ -32,34 +32,34 @@ public class MainFile extends Application {
 
         Player p1 = new Player(new Image("green.png"), "Mr. Green", 1);
         ImageView p1view = p1.getImageView();
-        p1view.setFitWidth(40);
-        p1view.setFitHeight(40);
-        p1view.setX(610);
-        p1view.setY(570);
+        p1view.setFitWidth(20);
+        p1view.setFitHeight(20);
+        p1view.setX(255);
+        p1view.setY(605);
         mainPane.getChildren().add(p1view);
 
         Player p2 = new Player(new Image("mustard.png"), "Colonel Mustard", 2);
         ImageView p2view = p2.getImageView();
-        p2view.setFitWidth(40);
-        p2view.setFitHeight(40);
-        p2view.setX(610);
-        p2view.setY(570);
+        p2view.setFitWidth(20);
+        p2view.setFitHeight(20);
+        p2view.setX(585);
+        p2view.setY(200);
         mainPane.getChildren().add(p2view);
 
         Player p3 = new Player(new Image("scarlet.png"), "Miss Scarlet", 3);
         ImageView p3view = p3.getImageView();
-        p3view.setFitWidth(40);
-        p3view.setFitHeight(40);
-        p3view.setX(610);
-        p3view.setY(570);
+        p3view.setFitWidth(20);
+        p3view.setFitHeight(20);
+        p3view.setX(420);
+        p3view.setY(35);
         mainPane.getChildren().add(p3view);
 
         Player p4 = new Player(new Image("plum.png"), "Professor Plum", 4);
         ImageView p4view = p4.getImageView();
-        p4view.setFitWidth(40);
-        p4view.setFitHeight(40);
-        p4view.setX(610);
-        p4view.setY(570);
+        p4view.setFitWidth(20);
+        p4view.setFitHeight(20);
+        p4view.setX(45);
+        p4view.setY(150);
         mainPane.getChildren().add(p4view);
 
         ArrayList<Card> envelope = distributeCards(p1, p2, p3, p4);

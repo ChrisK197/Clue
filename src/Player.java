@@ -92,6 +92,17 @@ public class Player {
         mediaPlayer.setVolume(100);
         mediaPlayer.play();
 
-        //Move function - TO DO
+        int moves_done = 0;
+
+        //Move function - TODO
+
+        while (moves_done < roll) {
+            //Highlight squares to move to
+            //Check for a mouse click on one of those squares
+            //Move to that square
+            //Note if it is a room
+            //Update moves done
+        }
+        //Return to main
     }
 }
