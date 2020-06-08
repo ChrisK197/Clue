@@ -70,7 +70,7 @@ public class MainFile extends Application {
 
         ArrayList<Card> envelope = distributeCards(p1, p2, p3, p4);
 
-        //We are using a graph now
+        //We are using a graph.txt now
         try{createGraph();}
         catch (FileNotFoundException f){
             System.out.println("file not found");
