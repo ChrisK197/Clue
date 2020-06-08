@@ -5,4 +5,8 @@ public class Room extends Tile{
         super(x,y);
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
 }
