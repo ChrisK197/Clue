@@ -1,3 +1,4 @@
+import edu.princeton.cs.algs4.Graph;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -9,7 +10,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MainFile extends Application {
     private boolean weaponAns = false;
@@ -17,6 +22,7 @@ public class MainFile extends Application {
     private boolean playerAns = false;
     //currGuess in order: player (who are asking) at 0, weapon at 1, person you are guessing at 2, room at 3
     private String[] currGuess = new String[4];
+    private Graph g;
 
     private int turnCounter = 0;
 
@@ -64,8 +70,12 @@ public class MainFile extends Application {
 
         ArrayList<Card> envelope = distributeCards(p1, p2, p3, p4);
 
-        Tile[][] tiles = new Tile[23][24];
-        //Mr. Respass suggested a two-dim array for the board
+        //We are using a graph now
+        try{createGraph();}
+        catch (FileNotFoundException f){
+            System.out.println("file not found");
+        }
+
 
         Button diceRoll= new Button();
         diceRoll.setText("Roll");
@@ -292,5 +302,10 @@ public class MainFile extends Application {
         }
 
         return envelope;
+    }
+
+    private void createGraph() throws FileNotFoundException {
+        g = new Graph(197);
+        Scanner in = new Scanner(new FileReader("graph.txt"));
     }
 }
