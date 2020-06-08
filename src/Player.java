@@ -96,13 +96,13 @@ public class Player {
 
         //Move function - TODO
 
-        while (moves_done < roll) {
-            //Highlight squares to move to
-            //Check for a mouse click on one of those squares
-            //Move to that square
-            //Note if it is a room
-            //Update moves done
-        }
+        //Use BFS to find the squares (roll) distance or less away
+        //Highlight those squares
+        //Check for a mouse click
+        //Move
+
+        /*while (moves_done < roll) {
+        }*/
         //Return to main
     }
 }
