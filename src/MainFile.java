@@ -307,5 +307,10 @@ public class MainFile extends Application {
     private void createGraph() throws FileNotFoundException {
         g = new Graph(197);
         Scanner in = new Scanner(new FileReader("graph.txt"));
+        while(in.hasNextLine()){
+            String s = in.nextLine();
+            String[] a = s.split(" ");
+            g.addEdge(Integer.parseInt(a[0]), Integer.parseInt(a[1]));
+        }
     }
 }
