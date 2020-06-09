@@ -76,6 +76,21 @@ public class MainFile extends Application {
             System.out.println("File not found");
         }
 
+        //2D array to use in the for loop to file up tiles. (true means it is a space, false means it is not) it DOES NOT include the start spaces
+        // [col][row]
+        boolean[][] iHopeThisWorks = new boolean[25][24];
+        for(int col=0; col<25; col++){
+            for(int row =0; row<24; row++){
+                //study
+                if(col<=3 && row<=6){
+                    iHopeThisWorks[col][row]=false;
+                }
+                //hall (no space to get in yet)
+                else if(col<=6 && row>=9 && row<=14){
+                    iHopeThisWorks[col][row]=false;
+                }
+            }
+        }
         Tile[] tiles = new Tile[198]; //we don't have a 0, we started at 1
 
 
