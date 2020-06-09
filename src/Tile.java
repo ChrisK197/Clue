@@ -6,9 +6,10 @@ public class Tile {
     private int num;
     private ArrayList<Player> players;
 
-    public Tile (int x, int y) {
+    public Tile (int x, int y, int num) {
         this.x = x;
         this.y = y;
+        this.num = num;
         players = new ArrayList<>();
     }
 
