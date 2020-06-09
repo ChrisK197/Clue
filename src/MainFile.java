@@ -28,6 +28,10 @@ public class MainFile extends Application {
 
     public void start(Stage ps){
         Pane mainPane = new Pane();
+        //Prints coordinates of mouse click
+        /*mainPane.setOnMousePressed(e->{
+            System.out.println(e.getX() + ", " + e.getY());
+        });*/
 
         Image board = new Image("clueboard.jpg");
         ImageView boardImageView = new ImageView();
