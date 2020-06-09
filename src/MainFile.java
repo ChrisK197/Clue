@@ -311,6 +311,7 @@ public class MainFile extends Application {
             String s = in.nextLine();
             String[] a = s.split(" ");
             g.addEdge(Integer.parseInt(a[0]), Integer.parseInt(a[1]));
+            g.addEdge(Integer.parseInt(a[1]), Integer.parseInt(a[0]));
         }
     }
 }
