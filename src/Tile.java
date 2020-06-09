@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Tile {
     private int x;
     private int y;
+    private int num;
     private ArrayList<Player> players;
 
     public Tile (int x, int y) {
@@ -17,5 +18,9 @@ public class Tile {
 
     public void removePlayer(Player p) {
         players.remove(p);
+    }
+
+    public int getNum(){
+        return num;
     }
 }

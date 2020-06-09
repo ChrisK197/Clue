@@ -73,10 +73,10 @@ public class MainFile extends Application {
         //We are using a graph.txt now
         try{createGraph();}
         catch (FileNotFoundException f){
-            System.out.println("file not found");
+            System.out.println("File not found");
         }
 
-        Tile[] tiles = new Tile[197];
+        Tile[] tiles = new Tile[198]; //we don't have a 0, we started at 1
 
         Button diceRoll= new Button();
         diceRoll.setText("Roll");
@@ -306,7 +306,7 @@ public class MainFile extends Application {
     }
 
     private void createGraph() throws FileNotFoundException {
-        g = new Graph(197);
+        g = new Graph(198);
         //g is a private global variable declared at the top
         Scanner in = new Scanner(new FileReader("graph.txt"));
         while(in.hasNextLine()){
