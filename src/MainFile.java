@@ -307,6 +307,7 @@ public class MainFile extends Application {
 
     private void createGraph() throws FileNotFoundException {
         g = new Graph(197);
+        //g is a private global variable declared at the top
         Scanner in = new Scanner(new FileReader("graph.txt"));
         while(in.hasNextLine()){
             String s = in.nextLine();
