@@ -77,9 +77,7 @@ public class MainFile extends Application {
         }
 
         Tile[] tiles = new Tile[198]; //we don't have a 0, we started at 1
-        for(int i=1; i<tiles.length; i++){
-            tiles[i] = new Tile()
-        }
+
 
         Button diceRoll= new Button();
         diceRoll.setText("Roll");
