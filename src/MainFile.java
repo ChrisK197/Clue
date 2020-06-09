@@ -76,6 +76,7 @@ public class MainFile extends Application {
             System.out.println("file not found");
         }
 
+        Tile[] tiles = new Tile[197];
 
         Button diceRoll= new Button();
         diceRoll.setText("Roll");
