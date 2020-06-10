@@ -94,17 +94,69 @@ public class MainFile extends Application {
 
         //2D array to use in the for loop to file up tiles. (true means it is a space, false means it is not) it DOES NOT include the start spaces
         // [col][row]
-        boolean[][] iHopeThisWorks = new boolean[25][24];
+        boolean[][] tileOrNot = new boolean[25][24];
         for(int col=0; col<25; col++){
             for(int row =0; row<24; row++){
                 //study
                 if(col<=3 && row<=6){
-                    iHopeThisWorks[col][row]=false;
+                    tileOrNot[col][row]=false;
                 }
-                //hall (no space to get in yet)
+                //hall
                 else if(col<=6 && row>=9 && row<=14){
-                    iHopeThisWorks[col][row]=false;
+                    tileOrNot[col][row]=false;
                 }
+                //lounge (and 1 extra space but that is fine)
+                else if (col<=5 && row >=17){
+                    tileOrNot[col][row]=false;
+                }
+                //library (plz check this idk if it is right)
+                else if(col>=6 && col<=10 && (row <=5 || (row==6 && col==7) || (row==6 && col==8))){
+                    tileOrNot[col][row]=false;
+                }
+                //box in the middle that says clue
+                else if (col>=8 && col<=14 && row >=9 && row <=13){
+                    tileOrNot[col][row]=false;
+                }
+                //dining room part 1
+                else if(row >=16 && col>=9 && col<=14){
+                    tileOrNot[col][row]=false;
+                }
+                //dining room part 2
+                else if(col==15 && row>=19){
+                    tileOrNot[col][row]=false;
+                }
+                //billiard room
+                else if(col>=12 && col<=16 && row<=5){
+                    tileOrNot[col][row]=false;
+                }
+                //conservatory
+                else if(col>=19 && row <=5){
+                    tileOrNot[col][row]=false;
+                }
+                //little space right outside conservatory
+                else if(row==5 && col==19){
+                    tileOrNot[col][row]=true;
+                }
+                //ballroom
+                else if (col<=17 && row>=8 && row <=15){
+                    tileOrNot[col][row]=false;
+                }
+
+                //kitchen
+                else if(row>=18 && col>=18){
+                    tileOrNot[col][row]=false;
+                }
+                //perimeter
+                else if(row==0 || col==0 || row==23 || col==24){
+                    tileOrNot[col][row]=false;
+                }
+                //perimeter fix (one space)
+                tileOrNot[17][23]=true;
+                //ballroom four spaces
+                tileOrNot[23][8]=true;
+                tileOrNot[23][9]=true;
+                tileOrNot[23][15]=true;
+                tileOrNot[23][14]=true;
             }
         }
         Tile[] tiles = new Tile[198]; //we don't have a 0, we started at 1
