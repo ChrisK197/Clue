@@ -79,6 +79,18 @@ public class MainFile extends Application {
         catch (FileNotFoundException f){
             System.out.println("File not found");
         }
+        /*
+        These were temporary testing variables. I'm leaving them here in case I need them later
+        Tile t = new Tile(100,100, 0);
+        t.highlight();
+        mainPane.getChildren().add(t.getImageView());
+        Tile x = new Tile(200,10, 1);
+        x.highlight();
+        mainPane.getChildren().add(x.getImageView());
+        Tile z = new Tile(250,130, 2);
+        z.highlight();
+        mainPane.getChildren().add(z.getImageView());
+        Tile.highlightedTiles.add(t); Tile.highlightedTiles.add(x); Tile.highlightedTiles.add(z);*/
 
         //2D array to use in the for loop to file up tiles. (true means it is a space, false means it is not) it DOES NOT include the start spaces
         // [col][row]
