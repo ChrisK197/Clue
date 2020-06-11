@@ -138,7 +138,7 @@ public class MainFile extends Application {
                     tileOrNot[row][col]=false;
                 }
                 //ballroom
-                else if (row<=17 && col>=8 && col <=15){
+                else if (row>=17 && col>=8 && col <=15){
                     tileOrNot[row][col]=false;
                 }
 
@@ -161,6 +161,7 @@ public class MainFile extends Application {
                 tileOrNot[23][15]=true;
                 tileOrNot[23][14]=true;
                 tileOrNot[5][19]=true;
+                tileOrNot[0][7] = true;
             }
         }
         Tile[] tiles = new Tile[198]; //we don't have a 0, we started at 1
