@@ -4,14 +4,14 @@ import javafx.scene.image.ImageView;
 import java.util.ArrayList;
 
 public class Tile {
-    private int x;
-    private int y;
+    private double x;
+    private double y;
     private int num;
     private ArrayList<Player> players;
     private ImageView highlighted = new ImageView(new Image("highlighted_tile.png"));
     public static ArrayList<Tile> highlightedTiles = new ArrayList<>();
 
-    public Tile (int x, int y, int num) {
+    public Tile (double x, double y, int num) {
         this.x = x;
         this.y = y;
         this.num = num;

@@ -162,6 +162,10 @@ public class MainFile extends Application {
                 tileOrNot[23][14]=true;
                 tileOrNot[5][19]=true;
                 tileOrNot[0][7] = true;
+                tileOrNot[5][19] = false;
+                tileOrNot[23][6] = false;
+                tileOrNot[23][17] = false;
+                tileOrNot[9][6] = false;
             }
         }
         Tile[] tiles = new Tile[198]; //we don't have a 0, we started at 1
@@ -171,7 +175,7 @@ public class MainFile extends Application {
         for(int row = 0; row < tileOrNot.length; row++){
             for(int col = 0; col < tileOrNot[0].length; col++){
                 if(tileOrNot[row][col]){
-                    tiles[count] = new Tile(xval + 24*col,yval + 24*row, count);
+                    tiles[count] = new Tile(xval + 23.8*col,yval + 24*row, count);
                     mainPane.getChildren().add(tiles[count].getImageView());
                     tiles[count].highlight();
                     count++;
