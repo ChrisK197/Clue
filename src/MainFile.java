@@ -164,6 +164,19 @@ public class MainFile extends Application {
             }
         }
         Tile[] tiles = new Tile[198]; //we don't have a 0, we started at 1
+        int count = 1;
+        int xval = 63-24; //starting
+        int yval = 28; //starting
+        for(int row = 0; row < tileOrNot.length; row++){
+            for(int col = 0; col < tileOrNot[0].length; col++){
+                if(tileOrNot[row][col]){
+                    tiles[count] = new Tile(xval + 24*col,yval + 24*row, count);
+                    mainPane.getChildren().add(tiles[count].getImageView());
+                    tiles[count].highlight();
+                    count++;
+                }
+            }
+        }
 
 
         Button diceRoll= new Button();

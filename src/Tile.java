@@ -16,7 +16,8 @@ public class Tile {
         this.y = y;
         this.num = num;
         highlighted.setX(x);
-        highlighted.setY(x);
+        highlighted.setY(y);
+        highlighted.setFitHeight(24);
         highlighted.setOnMouseClicked(e->{
             highlighted.setVisible(false);
             System.out.println(highlightedTiles);
