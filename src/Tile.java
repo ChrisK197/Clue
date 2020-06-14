@@ -11,6 +11,7 @@ public class Tile {
     private ImageView highlighted = new ImageView(new Image("highlighted_tile.png"));
     public static ArrayList<Tile> highlightedTiles = new ArrayList<>();
     public boolean stateHighlighted = false;
+    //I think this variable is not necessary.
 
     public Tile (double x, double y, int num) {
         this.x = x;
@@ -24,7 +25,7 @@ public class Tile {
         stateHighlighted = false;
         highlighted.setOnMouseClicked(e->{
             highlighted.setVisible(false);
-            stateHighlighted = true;
+            //stateHighlighted = true;
             System.out.println(highlightedTiles);
             for(int i = highlightedTiles.size() - 1; i >= 0; i--){
                 if(!highlightedTiles.get(i).equals(this))
@@ -63,7 +64,7 @@ public class Tile {
     }
 
     public boolean isHighlighted () {
-        return stateHighlighted;
+        return highlighted.isVisible();
     }
 
     public String toString(){
