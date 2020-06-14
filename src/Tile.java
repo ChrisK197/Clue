@@ -10,6 +10,7 @@ public class Tile {
     private ArrayList<Player> players;
     private ImageView highlighted = new ImageView(new Image("highlighted_tile.png"));
     public static ArrayList<Tile> highlightedTiles = new ArrayList<>();
+    public boolean stateHighlighted = false;
 
     public Tile (double x, double y, int num) {
         this.x = x;
@@ -19,8 +20,11 @@ public class Tile {
         highlighted.setY(y);
         highlighted.setFitWidth(24);
         highlighted.setFitHeight(24);
+        highlighted.setVisible(false);
+        stateHighlighted = false;
         highlighted.setOnMouseClicked(e->{
             highlighted.setVisible(false);
+            stateHighlighted = true;
             System.out.println(highlightedTiles);
             for(int i = highlightedTiles.size() - 1; i >= 0; i--){
                 if(!highlightedTiles.get(i).equals(this))
@@ -43,15 +47,25 @@ public class Tile {
     public int getNum(){
         return num;
     }
+
     public void highlight(){
         highlighted.setVisible(true);
+        stateHighlighted = true;
     }
+
     public void unhighlight(){
         highlighted.setVisible(false);
+        stateHighlighted = false;
     }
+
     public ImageView getImageView() {
         return highlighted;
     }
+
+    public boolean isHighlighted () {
+        return stateHighlighted;
+    }
+
     public String toString(){
         return "Tile " + num + ": (" + x + ", " + y + ")";
     }
