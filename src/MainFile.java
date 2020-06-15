@@ -173,6 +173,18 @@ public class MainFile extends Application {
                 tileOrNot[9][6] = false;
             }
         }
+
+        //Rooms are being made below, the coordinates need to be changed later
+        Room study = new Room(63-24, 28, 191, "Study");
+        Room hall = new Room(351, 28, 192, "Hall");
+        Room lounge = new Room(663, 28, 193, "Lounge");
+        Room library = new Room(39, 168, 190, "Library");
+        Room diningRoom = new Room(624, 252, 189, "Dining Room");
+        Room billiardRoom = new Room(39, 336, 188, "Billiard Room");
+        Room conservatory = new Room(39, 532, 185, "Conservatory");
+        Room ballRoom = new Room(311, 476, 186, "Ballroom");
+        Room kitchen = new Room(504, 702, 187, "Kitchen");
+
         tiles = new Tile[198]; //we don't have a 0, we started at 1
         int count = 1;
         int xval = 63-24; //starting
@@ -198,6 +210,160 @@ public class MainFile extends Application {
                     mainPane.getChildren().add(tiles[count].getImageView());
                     //tiles[count].highlight();
                     count++;
+                }
+                //Rooms
+                //study
+                else if(row==2 && col==5){
+                    study.setP1x(xval + 23.8*col);
+                    study.setP1y(yval + 24*row);
+                }
+                else if(row==2 && col==4){
+                    study.setP2x(xval + 23.8*col);
+                    study.setP2y(yval + 24*row);
+                }
+                else if(row==2 && col==3){
+                    study.setP3x(xval + 23.8*col);
+                    study.setP3y(yval + 24*row);
+                }
+                else if(row==2 && col==2){
+                    study.setP4x(xval + 23.8*col);
+                    study.setP4y(yval + 24*row);
+                }
+                //hall
+                else if(row==3 && col==13){
+                    study.setP1x(xval + 23.8*col);
+                    study.setP1y(yval + 24*row);
+                }
+                else if(row==3 && col==12){
+                    study.setP2x(xval + 23.8*col);
+                    study.setP2y(yval + 24*row);
+                }
+                else if(row==3 && col==11){
+                    study.setP3x(xval + 23.8*col);
+                    study.setP3y(yval + 24*row);
+                }
+                else if(row==3 && col==10){
+                    study.setP4x(xval + 23.8*col);
+                    study.setP4y(yval + 24*row);
+                }
+                //lounge
+                else if(row==2 && col==22){
+                    study.setP1x(xval + 23.8*col);
+                    study.setP1y(yval + 24*row);
+                }
+                else if(row==2 && col==21){
+                    study.setP2x(xval + 23.8*col);
+                    study.setP2y(yval + 24*row);
+                }
+                else if(row==2 && col==20){
+                    study.setP3x(xval + 23.8*col);
+                    study.setP3y(yval + 24*row);
+                }
+                else if(row==2 && col==19){
+                    study.setP4x(xval + 23.8*col);
+                    study.setP4y(yval + 24*row);
+                }
+                //library
+                else if(row==6 && col==5){
+                    study.setP1x(xval + 23.8*col);
+                    study.setP1y(yval + 24*row);
+                }
+                else if(row==6 && col==4){
+                    study.setP2x(xval + 23.8*col);
+                    study.setP2y(yval + 24*row);
+                }
+                else if(row==6 && col==3){
+                    study.setP3x(xval + 23.8*col);
+                    study.setP3y(yval + 24*row);
+                }
+                else if(row==6 && col==2){
+                    study.setP4x(xval + 23.8*col);
+                    study.setP4y(yval + 24*row);
+                }
+                //Dining Room
+                else if(row==12 && col==22){
+                    study.setP1x(xval + 23.8*col);
+                    study.setP1y(yval + 24*row);
+                }
+                else if(row==12 && col==21){
+                    study.setP2x(xval + 23.8*col);
+                    study.setP2y(yval + 24*row);
+                }
+                else if(row==12 && col==20){
+                    study.setP3x(xval + 23.8*col);
+                    study.setP3y(yval + 24*row);
+                }
+                else if(row==12 && col==19){
+                    study.setP4x(xval + 23.8*col);
+                    study.setP4y(yval + 24*row);
+                }
+                //Billiard Room
+                else if(row==14 && col==4){
+                    study.setP1x(xval + 23.8*col);
+                    study.setP1y(yval + 24*row);
+                }
+                else if(row==14 && col==3){
+                    study.setP2x(xval + 23.8*col);
+                    study.setP2y(yval + 24*row);
+                }
+                else if(row==14 && col==2){
+                    study.setP3x(xval + 23.8*col);
+                    study.setP3y(yval + 24*row);
+                }
+                else if(row==14 && col==1){
+                    study.setP4x(xval + 23.8*col);
+                    study.setP4y(yval + 24*row);
+                }
+                //Conservatory
+                else if(row==21 && col==4){
+                    study.setP1x(xval + 23.8*col);
+                    study.setP1y(yval + 24*row);
+                }
+                else if(row==21 && col==3){
+                    study.setP2x(xval + 23.8*col);
+                    study.setP2y(yval + 24*row);
+                }
+                else if(row==21 && col==2){
+                    study.setP3x(xval + 23.8*col);
+                    study.setP3y(yval + 24*row);
+                }
+                else if(row==21 && col==1){
+                    study.setP4x(xval + 23.8*col);
+                    study.setP4y(yval + 24*row);
+                }
+                //Ballroom
+                else if(row==20 && col==13){
+                    study.setP1x(xval + 23.8*col);
+                    study.setP1y(yval + 24*row);
+                }
+                else if(row==20 && col==12){
+                    study.setP2x(xval + 23.8*col);
+                    study.setP2y(yval + 24*row);
+                }
+                else if(row==20 && col==11){
+                    study.setP3x(xval + 23.8*col);
+                    study.setP3y(yval + 24*row);
+                }
+                else if(row==20 && col==10){
+                    study.setP4x(xval + 23.8*col);
+                    study.setP4y(yval + 24*row);
+                }
+                //kitchen
+                else if(row==20 && col==22){
+                    study.setP1x(xval + 23.8*col);
+                    study.setP1y(yval + 24*row);
+                }
+                else if(row==20 && col==21){
+                    study.setP2x(xval + 23.8*col);
+                    study.setP2y(yval + 24*row);
+                }
+                else if(row==20 && col==20){
+                    study.setP3x(xval + 23.8*col);
+                    study.setP3y(yval + 24*row);
+                }
+                else if(row==20 && col==19){
+                    study.setP4x(xval + 23.8*col);
+                    study.setP4y(yval + 24*row);
                 }
             }
         }
