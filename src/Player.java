@@ -63,6 +63,11 @@ public class Player {
     public String getCurrentRoom() {
         return currentRoom;
     }
+
+    public void setCurrentSpace(int currentSpace) {
+        this.currentSpace = currentSpace;
+    }
+
     public int getCurrentSpace(){
         return currentSpace;
     }
