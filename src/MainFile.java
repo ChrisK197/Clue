@@ -206,6 +206,7 @@ public class MainFile extends Application {
                         System.out.println(Tile.highlightedTiles);
                         currentPlayer.getImageView().setX(tiles[finalCount].getX());
                         currentPlayer.getImageView().setY(tiles[finalCount].getY());
+                        currentPlayer.setCurrentSpace(tiles[finalCount].getNum());
                     });
                     mainPane.getChildren().add(tiles[count].getImageView());
                     //tiles[count].highlight();
