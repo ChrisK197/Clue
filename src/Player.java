@@ -8,8 +8,11 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import edu.princeton.cs.algs4.Graph;
+import edu.princeton.cs.algs4.BreadthFirstPaths;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class Player {
     private Card[] cards;
@@ -18,6 +21,7 @@ public class Player {
     private int num;
     private String currentRoom = null;
     private int numCards = 0;
+    int tileNum = 0;
 
     private String musicFile = "diceRoll.mp3";
     private Media sound = new Media(new File(musicFile).toURI().toString());
@@ -74,7 +78,11 @@ public class Player {
         return numCards;
     }
 
-    protected void move(){
+    public void setTile(int ti) {
+        tileNum = ti;
+    }
+
+    protected void move(Graph g){
         int roll = (int)(Math.random()*6)+1;
         int roll2 = (int)(Math.random()*6)+1;
         Stage stage = new Stage();
@@ -95,6 +103,15 @@ public class Player {
         int moves_done = 0;
 
         //Move function - TODO
+
+         BreadthFirstPaths bf = new BreadthFirstPaths(g, tileNum);
+
+         Iterable<Integer> tilesOpen = bf.pathTo(tileNum + roll);
+
+         for (Integer i : tilesOpen) {
+             //Highlight all of the selected tiles
+         }
+
 
         //Use BFS to find the squares (roll) distance or less away
         //Highlight those squares

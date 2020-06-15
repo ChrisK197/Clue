@@ -42,6 +42,7 @@ public class MainFile extends Application {
 
         Player p1 = new Player(new Image("green.png"), "Mr. Green", 1);
         ImageView p1view = p1.getImageView();
+        p1.setTile(183);
         p1view.setFitWidth(20);
         p1view.setFitHeight(20);
         p1view.setX(255);
@@ -50,6 +51,7 @@ public class MainFile extends Application {
 
         Player p2 = new Player(new Image("mustard.png"), "Colonel Mustard", 2);
         ImageView p2view = p2.getImageView();
+        p2.setTile(196);
         p2view.setFitWidth(20);
         p2view.setFitHeight(20);
         p2view.setX(585);
@@ -58,6 +60,7 @@ public class MainFile extends Application {
 
         Player p3 = new Player(new Image("scarlet.png"), "Miss Scarlet", 3);
         ImageView p3view = p3.getImageView();
+        p3.setTile(194);
         p3view.setFitWidth(20);
         p3view.setFitHeight(20);
         p3view.setX(420);
@@ -66,6 +69,7 @@ public class MainFile extends Application {
 
         Player p4 = new Player(new Image("plum.png"), "Professor Plum", 4);
         ImageView p4view = p4.getImageView();
+        p4.setTile(195);
         p4view.setFitWidth(20);
         p4view.setFitHeight(20);
         p4view.setX(45);
@@ -177,7 +181,7 @@ public class MainFile extends Application {
                 if(tileOrNot[row][col]){
                     tiles[count] = new Tile(xval + 23.8*col,yval + 24*row, count);
                     mainPane.getChildren().add(tiles[count].getImageView());
-                    tiles[count].highlight();
+                    //tiles[count].highlight();
                     count++;
                 }
             }
@@ -190,19 +194,19 @@ public class MainFile extends Application {
         //This is just the basic move function setup, not anything that would work as of now, TO DO
         diceRoll.setOnAction(e->{
             if (turnCounter == 0) {
-                p1.move();
+                p1.move(g);
                 turnCounter++;
             }
             else if (turnCounter == 1) {
-                p2.move();
+                p2.move(g);
                 turnCounter++;
             }
             else if (turnCounter == 2) {
-                p3.move();
+                p3.move(g);
                 turnCounter++;
             }
             else {
-                p4.move();
+                p4.move(g);
                 turnCounter = 0;
             }
         });
