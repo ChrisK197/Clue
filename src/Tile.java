@@ -23,16 +23,6 @@ public class Tile {
         highlighted.setFitHeight(24);
         highlighted.setVisible(false);
         stateHighlighted = false;
-        highlighted.setOnMouseClicked(e->{
-            highlighted.setVisible(false);
-            //stateHighlighted = true;
-            System.out.println(highlightedTiles);
-            for(int i = highlightedTiles.size() - 1; i >= 0; i--){
-                if(!highlightedTiles.get(i).equals(this))
-                    highlightedTiles.remove(i).unhighlight();
-            }
-            System.out.println(highlightedTiles);
-        });
         highlighted.setVisible(false);
         players = new ArrayList<>();
     }
@@ -69,5 +59,13 @@ public class Tile {
 
     public String toString(){
         return "Tile " + num + ": (" + x + ", " + y + ")";
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
     }
 }

@@ -1,3 +1,4 @@
+import edu.princeton.cs.algs4.BreadthFirstPaths;
 import edu.princeton.cs.algs4.Graph;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -23,6 +24,9 @@ public class MainFile extends Application {
     //currGuess in order: player (who are asking) at 0, weapon at 1, person you are guessing at 2, room at 3
     private String[] currGuess = new String[4];
     private Graph g;
+    private Tile[] tiles;
+    private Button diceRoll;
+    private Player currentPlayer;
 
     private int turnCounter = 0;
 
@@ -40,36 +44,33 @@ public class MainFile extends Application {
         boardImageView.setFitHeight(650);
         mainPane.getChildren().add(boardImageView);
 
-        Player p1 = new Player(new Image("green.png"), "Mr. Green", 1);
+        Player p1 = new Player(new Image("green.png"), "Mr. Green", 1, 183);
+        currentPlayer = p1;
         ImageView p1view = p1.getImageView();
-        p1.setTile(183);
         p1view.setFitWidth(20);
         p1view.setFitHeight(20);
         p1view.setX(255);
         p1view.setY(605);
         mainPane.getChildren().add(p1view);
 
-        Player p2 = new Player(new Image("mustard.png"), "Colonel Mustard", 2);
+        Player p2 = new Player(new Image("mustard.png"), "Colonel Mustard", 2, 196);
         ImageView p2view = p2.getImageView();
-        p2.setTile(196);
         p2view.setFitWidth(20);
         p2view.setFitHeight(20);
         p2view.setX(585);
         p2view.setY(200);
         mainPane.getChildren().add(p2view);
 
-        Player p3 = new Player(new Image("scarlet.png"), "Miss Scarlet", 3);
+        Player p3 = new Player(new Image("scarlet.png"), "Miss Scarlet", 3, 194);
         ImageView p3view = p3.getImageView();
-        p3.setTile(194);
         p3view.setFitWidth(20);
         p3view.setFitHeight(20);
         p3view.setX(420);
         p3view.setY(35);
         mainPane.getChildren().add(p3view);
 
-        Player p4 = new Player(new Image("plum.png"), "Professor Plum", 4);
+        Player p4 = new Player(new Image("plum.png"), "Professor Plum", 4, 195);
         ImageView p4view = p4.getImageView();
-        p4.setTile(195);
         p4view.setFitWidth(20);
         p4view.setFitHeight(20);
         p4view.setX(45);
@@ -172,7 +173,7 @@ public class MainFile extends Application {
                 tileOrNot[9][6] = false;
             }
         }
-        Tile[] tiles = new Tile[198]; //we don't have a 0, we started at 1
+        tiles = new Tile[198]; //we don't have a 0, we started at 1
         int count = 1;
         int xval = 63-24; //starting
         int yval = 28; //starting
@@ -180,6 +181,20 @@ public class MainFile extends Application {
             for(int col = 0; col < tileOrNot[0].length; col++){
                 if(tileOrNot[row][col]){
                     tiles[count] = new Tile(xval + 23.8*col,yval + 24*row, count);
+                    //Moved setOnMouseClicked out of Tile so it can access the diceRoll
+                    int finalCount = count;
+                    tiles[count].getImageView().setOnMouseClicked(e->{
+                        diceRoll.setDisable(false);
+                        tiles[finalCount].getImageView().setVisible(false);
+                        //stateHighlighted = true;
+                        System.out.println(Tile.highlightedTiles);
+                        for(int i = Tile.highlightedTiles.size() - 1; i >= 0; i--) {
+                            Tile.highlightedTiles.remove(i).unhighlight();
+                        }
+                        System.out.println(Tile.highlightedTiles);
+                        currentPlayer.getImageView().setX(tiles[finalCount].getX());
+                        currentPlayer.getImageView().setY(tiles[finalCount].getY());
+                    });
                     mainPane.getChildren().add(tiles[count].getImageView());
                     //tiles[count].highlight();
                     count++;
@@ -188,25 +203,34 @@ public class MainFile extends Application {
         }
 
 
-        Button diceRoll= new Button();
+        diceRoll= new Button();
         diceRoll.setText("Roll");
         diceRoll.setPrefSize(50, 50);
         //This is just the basic move function setup, not anything that would work as of now, TO DO
         diceRoll.setOnAction(e->{
+            diceRoll.setDisable(true);
             if (turnCounter == 0) {
-                p1.move(g);
+                currentPlayer = p1;
+                int roll = p1.move();
+                move(p1, roll);
                 turnCounter++;
             }
             else if (turnCounter == 1) {
-                p2.move(g);
+                currentPlayer = p2;
+                int roll = p2.move();
+                move(p2, roll);
                 turnCounter++;
             }
             else if (turnCounter == 2) {
-                p3.move(g);
+                currentPlayer = p3;
+                int roll = p3.move();
+                move(p3, roll);
                 turnCounter++;
             }
             else {
-                p4.move(g);
+                currentPlayer = p4;
+                int roll = p4.move();
+                move(p4, roll);
                 turnCounter = 0;
             }
         });
@@ -424,6 +448,17 @@ public class MainFile extends Application {
             String[] a = s.split(" ");
             g.addEdge(Integer.parseInt(a[0]), Integer.parseInt(a[1]));
             g.addEdge(Integer.parseInt(a[1]), Integer.parseInt(a[0]));
+        }
+    }
+    private void move(Player p, int roll){
+        BreadthFirstPaths b = new BreadthFirstPaths(g, p.getCurrentSpace());
+
+        for(int i = 1; i < 198; i++){
+
+            if(b.distTo(i) <= roll && b.distTo(i) % 2 == roll % 2 && i != p.getCurrentSpace()){
+                tiles[i].highlight();
+                Tile.highlightedTiles.add(tiles[i]);
+            }
         }
     }
 }

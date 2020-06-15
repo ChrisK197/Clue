@@ -8,11 +8,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.BreadthFirstPaths;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class Player {
     private Card[] cards;
@@ -20,17 +17,18 @@ public class Player {
     private String name;
     private int num;
     private String currentRoom = null;
+    private int currentSpace;
     private int numCards = 0;
-    int tileNum = 0;
 
     private String musicFile = "diceRoll.mp3";
     private Media sound = new Media(new File(musicFile).toURI().toString());
     private MediaPlayer mediaPlayer = new MediaPlayer(sound);
 
-    public Player(Image image, String name, int num){
+    public Player(Image image, String name, int num, int currSpace){
         icon = new ImageView(image);
         this.name = name;
         this.num = num;
+        currentSpace = currSpace;
         //Players 1 and 2 will always have one more card than Players 3 and 4
         if(num == 1 || num == 2)
             cards = new Card[5];
@@ -65,6 +63,9 @@ public class Player {
     public String getCurrentRoom() {
         return currentRoom;
     }
+    public int getCurrentSpace(){
+        return currentSpace;
+    }
 
     public void setCards(Card[] cards) {
         this.cards = cards;
@@ -78,11 +79,7 @@ public class Player {
         return numCards;
     }
 
-    public void setTile(int ti) {
-        tileNum = ti;
-    }
-
-    protected void move(Graph g){
+    protected int move(){
         int roll = (int)(Math.random()*6)+1;
         int roll2 = (int)(Math.random()*6)+1;
         Stage stage = new Stage();
@@ -100,18 +97,11 @@ public class Player {
         mediaPlayer.setVolume(100);
         mediaPlayer.play();
 
-        int moves_done = 0;
+        return roll;
+
+        //int moves_done = 0;
 
         //Move function - TODO
-
-         BreadthFirstPaths bf = new BreadthFirstPaths(g, tileNum);
-
-         Iterable<Integer> tilesOpen = bf.pathTo(tileNum + roll);
-
-         for (Integer i : tilesOpen) {
-             //Highlight all of the selected tiles
-         }
-
 
         //Use BFS to find the squares (roll) distance or less away
         //Highlight those squares
