@@ -199,11 +199,11 @@ public class MainFile extends Application {
                         diceRoll.setDisable(false);
                         tiles[finalCount].getImageView().setVisible(false);
                         //stateHighlighted = true;
-                        System.out.println(Tile.highlightedTiles);
+                        //System.out.println(Tile.highlightedTiles);
                         for(int i = Tile.highlightedTiles.size() - 1; i >= 0; i--) {
                             Tile.highlightedTiles.remove(i).unhighlight();
                         }
-                        System.out.println(Tile.highlightedTiles);
+                        //System.out.println(Tile.highlightedTiles);
                         currentPlayer.getImageView().setX(tiles[finalCount].getX());
                         currentPlayer.getImageView().setY(tiles[finalCount].getY());
                         currentPlayer.setCurrentSpace(tiles[finalCount].getNum());
@@ -368,7 +368,6 @@ public class MainFile extends Application {
                 }
             }
         }
-
 
         diceRoll= new Button();
         diceRoll.setText("Roll");
