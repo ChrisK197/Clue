@@ -72,4 +72,8 @@ public class Tile {
     public double getY() {
         return y;
     }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
 }

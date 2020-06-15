@@ -186,6 +186,15 @@ public class MainFile extends Application {
         Room kitchen = new Room(504, 702, 187, "Kitchen");
 
         tiles = new Tile[198]; //we don't have a 0, we started at 1
+        tiles[191] = study;
+        tiles[192] = hall;
+        tiles[193] = lounge;
+        tiles[190] = library;
+        tiles[189] = diningRoom;
+        tiles[188] = billiardRoom;
+        tiles[185] = conservatory;
+        tiles[186] = ballRoom;
+        tiles[187] = kitchen;
         int count = 1;
         int xval = 63-24; //starting
         int yval = 28; //starting
@@ -618,12 +627,16 @@ public class MainFile extends Application {
     }
     private void move(Player p, int roll){
         BreadthFirstPaths b = new BreadthFirstPaths(g, p.getCurrentSpace());
+        ArrayList<Integer> nulls = new ArrayList<>();
+        nulls.add(195); nulls.add(194); nulls.add(196); nulls.add(184); nulls.add(183); nulls.add(197);
 
         for(int i = 1; i < 198; i++){
 
             if(b.distTo(i) <= roll && b.distTo(i) % 2 == roll % 2 && i != p.getCurrentSpace()){
-                tiles[i].highlight();
-                Tile.highlightedTiles.add(tiles[i]);
+                if (!nulls.contains(i)) {
+                    tiles[i].highlight();
+                    Tile.highlightedTiles.add(tiles[i]);
+                }
             }
         }
     }
