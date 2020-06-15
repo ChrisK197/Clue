@@ -1,3 +1,7 @@
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+
 public class Room extends Tile{
     private String name;
     private double p1x;
@@ -8,11 +12,35 @@ public class Room extends Tile{
     private double p3y;
     private double p4x;
     private double p4y;
+    private ImageView imageView;
 
-    public Room(int x, int y, int num, String name){
+    public Room(int x, int y, int num, String name, String im){
         super(x,y, num);
         this.name = name;
-        //TODO give rooms a different x, y coordinate for each player
+        imageView = new ImageView(new Image(im));
+        imageView.setX(x);
+        imageView.setY(y);
+        imageView.setScaleX(.8305);
+        imageView.setScaleY(.7855);
+        imageView.setVisible(false);
+    }
+
+    @Override
+    public ImageView getImageView() {
+        return imageView;
+    }
+    @Override
+    public void highlight(){
+        imageView.setVisible(true);
+    }
+    @Override
+    public void unhighlight(){
+        imageView.setVisible(false);
+    }
+
+    @Override
+    public boolean isHighlighted() {
+        return imageView.isVisible();
     }
 
     public double getP1x() {

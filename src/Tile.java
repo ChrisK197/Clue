@@ -10,7 +10,6 @@ public class Tile {
     private ArrayList<Player> players;
     private ImageView highlighted = new ImageView(new Image("highlighted_tile.png"));
     public static ArrayList<Tile> highlightedTiles = new ArrayList<>();
-    public boolean stateHighlighted = false;
     //I think this variable is not necessary.
 
 
@@ -23,8 +22,6 @@ public class Tile {
         highlighted.setY(y);
         highlighted.setFitWidth(24);
         highlighted.setFitHeight(24);
-        highlighted.setVisible(false);
-        stateHighlighted = false;
         highlighted.setVisible(false);
         players = new ArrayList<>();
     }
@@ -44,12 +41,10 @@ public class Tile {
 
     public void highlight(){
         highlighted.setVisible(true);
-        stateHighlighted = true;
     }
 
     public void unhighlight(){
         highlighted.setVisible(false);
-        stateHighlighted = false;
     }
 
     public ImageView getImageView() {

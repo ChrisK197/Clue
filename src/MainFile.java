@@ -175,15 +175,20 @@ public class MainFile extends Application {
         }
 
         //Rooms are being made below, the coordinates need to be changed later
-        Room study = new Room(63-24, 28, 191, "Study");
-        Room hall = new Room(351, 28, 192, "Hall");
-        Room lounge = new Room(663, 28, 193, "Lounge");
-        Room library = new Room(39, 168, 190, "Library");
-        Room diningRoom = new Room(624, 252, 189, "Dining Room");
-        Room billiardRoom = new Room(39, 336, 188, "Billiard Room");
-        Room conservatory = new Room(39, 532, 185, "Conservatory");
-        Room ballRoom = new Room(311, 476, 186, "Ballroom");
-        Room kitchen = new Room(504, 702, 187, "Kitchen");
+        Room study = new Room(63-24, 28, 191, "Study", "studyH.jpg");
+        Room hall = new Room(351, 28, 192, "Hall", "hallH.jpg");
+        Room lounge = new Room(663, 28, 193, "Lounge", "loungeH.png");
+        Room library = new Room(39, 168, 190, "Library", "libraryH.jpg");
+        Room diningRoom = new Room(624, 252, 189, "Dining Room", "diningH.png");
+        Room billiardRoom = new Room(39, 336, 188, "Billiard Room", "billiardH.jpg");
+        Room conservatory = new Room(39, 532, 185, "Conservatory", "conservatoryH.png");
+        Room ballRoom = new Room(210, 410, 186, "Ballroom", "ballRoomH.png");
+        Room kitchen = new Room(504, 702, 187, "Kitchen", "kitchenH.jpg");
+        Room[] temparr = {study, hall, lounge, library, diningRoom, billiardRoom, conservatory, ballRoom, kitchen};
+        for(Room r : temparr){
+            mainPane.getChildren().add(r.getImageView());
+            //r.highlight();
+        }
 
         tiles = new Tile[198]; //we don't have a 0, we started at 1
         tiles[191] = study;
