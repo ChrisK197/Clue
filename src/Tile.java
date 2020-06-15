@@ -13,6 +13,8 @@ public class Tile {
     public boolean stateHighlighted = false;
     //I think this variable is not necessary.
 
+
+
     public Tile (double x, double y, int num) {
         this.x = x;
         this.y = y;
@@ -26,6 +28,7 @@ public class Tile {
         highlighted.setVisible(false);
         players = new ArrayList<>();
     }
+
 
     public void addPlayer(Player p) {
         players.add(p);
@@ -56,6 +59,7 @@ public class Tile {
     public boolean isHighlighted () {
         return highlighted.isVisible();
     }
+
 
     public String toString(){
         return "Tile " + num + ": (" + x + ", " + y + ")";
