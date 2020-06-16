@@ -482,7 +482,7 @@ public class MainFile extends Application {
         });
 
         ps.setTitle("Clue");
-        Scene scene = new Scene(mainPane, 750,650);
+        Scene scene = new Scene(mainPane, 800,650);
         //The dimensions fit the board almost exactly, so if you want to add a border to put things in just expand it
         ps.setScene(scene);
         ps.show();
@@ -779,7 +779,7 @@ public class MainFile extends Application {
         weaponLayout.getChildren().addAll(weaponLabel, knife, gun, candlestick, leadPipe, wrench, rope, submit, labelresponse);
         peopleLayout.getChildren().addAll(personLabel, plum, green, mustard, scarlet, white, peacock);
 
-        Scene scene1= new Scene(mainLayout, 400, 250);
+        Scene scene1= new Scene(mainLayout, 450, 250);
         stage.setScene(scene1);
 
         stage.show();
