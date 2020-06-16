@@ -18,11 +18,22 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainFile extends Application {
+    //for continuing game and kicking out
+    private boolean p1Out = false;
+    private boolean p2Out = false;
+    private boolean p3Out = false;
+    private boolean p4Out = false;
+
     private boolean weaponAns = false;
     private boolean personAns = false;
     private boolean playerAns = false;
+    private boolean weaponFinalAns = false;
+    private boolean personFinalAns = false;
+    private boolean roomFinalAns=false;
     //currGuess in order: player (who are asking) at 0, weapon at 1, person you are guessing at 2, room at 3
     private String[] currGuess = new String[4];
+    // 0 is room, 1 is weapon, 2 is person
+    private String[] finalGuess = new String[3];
     private Graph g;
     private Tile[] tiles;
     private Button diceRoll;
@@ -31,11 +42,13 @@ public class MainFile extends Application {
     private Player p2;
     private Player p3;
     private Player p4;
+    private ArrayList<Card> envelope;
+    private Pane mainPane;
 
     private int turnCounter = 0;
 
     public void start(Stage ps){
-        Pane mainPane = new Pane();
+        mainPane = new Pane();
         //Prints coordinates of mouse click
         /*mainPane.setOnMousePressed(e->{
             System.out.println(e.getX() + ", " + e.getY());
@@ -81,7 +94,7 @@ public class MainFile extends Application {
         p4view.setY(150);
         mainPane.getChildren().add(p4view);
 
-        ArrayList<Card> envelope = distributeCards(p1, p2, p3, p4);
+        envelope = distributeCards(p1, p2, p3, p4);
 
         //We are using a graph.txt now
         try{createGraph();}
@@ -405,6 +418,31 @@ public class MainFile extends Application {
         diceRoll.setPrefSize(50, 50);
         //This is just the basic move function setup, not anything that would work as of now, TO DO
         diceRoll.setOnAction(e->{
+            if(p1Out && turnCounter==0){
+                turnCounter=1;
+            }
+            if(p2Out && turnCounter==1){
+                turnCounter=2;
+            }
+            if(p3Out && turnCounter==2){
+                turnCounter=3;
+            }
+            if(p4Out && turnCounter==3){
+                turnCounter=0;
+            }
+            //this is duplicated because if players 1 and 4 are out it could get weird.
+            if(p1Out && turnCounter==0){
+                turnCounter=1;
+            }
+            if(p2Out && turnCounter==1){
+                turnCounter=2;
+            }
+            if(p3Out && turnCounter==2){
+                turnCounter=3;
+            }
+            if(p4Out && turnCounter==3){
+                turnCounter=0;
+            }
             diceRoll.setDisable(true);
             if (turnCounter == 0) {
                 currentPlayer = p1;
@@ -435,14 +473,191 @@ public class MainFile extends Application {
         diceRoll.setLayoutX(287);
         diceRoll.setLayoutY(275);
 
+        Button finalGuess = new Button("Final Guess");
+        mainPane.getChildren().add(finalGuess);
+        finalGuess.setLayoutX(660);
+        finalGuess.setLayoutY(300);
+        finalGuess.setOnAction(e->{
+            finalGuess();
+        });
+
         ps.setTitle("Clue");
-        Scene scene = new Scene(mainPane, 650,650);
+        Scene scene = new Scene(mainPane, 750,650);
         //The dimensions fit the board almost exactly, so if you want to add a border to put things in just expand it
         ps.setScene(scene);
         ps.show();
 
         //guess(p1);
     }
+    public void finalGuess(){
+        Stage s = new Stage();
+        s.setTitle("FINAL GUESS");
+        Label weaponLabel= new Label("Pick a weapon.");
+        Label personLabel= new Label("Pick a person");
+
+        Button submit= new Button("Submit");
+        submit.setDisable(true);
+
+        //weapons
+        RadioButton knife, gun, candlestick, leadPipe, wrench, rope;
+        knife=new RadioButton("Knife");
+        gun= new RadioButton("Gun");
+        candlestick= new RadioButton("Candlestick");
+        leadPipe= new RadioButton("Lead Pipe");
+        wrench = new RadioButton("Wrench");
+        rope = new RadioButton("Rope");
+
+
+        ToggleGroup weapons= new ToggleGroup();
+
+        knife.setToggleGroup(weapons);
+        gun.setToggleGroup(weapons);
+        candlestick.setToggleGroup(weapons);
+        leadPipe.setToggleGroup(weapons);
+        wrench.setToggleGroup(weapons);
+        rope.setToggleGroup(weapons);
+
+
+        knife.setOnAction(e -> weaponChosen2(submit));
+        gun.setOnAction(e-> weaponChosen2(submit));
+        candlestick.setOnAction(e-> weaponChosen2(submit));
+        leadPipe.setOnAction(e-> weaponChosen2(submit));
+        wrench.setOnAction(e-> weaponChosen2(submit));
+        rope.setOnAction(e-> weaponChosen2(submit));
+
+        //people
+        RadioButton plum, green, mustard, scarlet, white, peacock;
+        plum =new RadioButton("Professor Plum");
+        green= new RadioButton("Mr. Green");
+        mustard= new RadioButton("Colonel Mustard");
+        scarlet= new RadioButton("Miss Scarlet");
+        white = new RadioButton("Mrs. White");
+        peacock = new RadioButton("Mrs. Peacock");
+
+
+        ToggleGroup people = new ToggleGroup();
+
+        plum.setToggleGroup(people);
+        green.setToggleGroup(people);
+        mustard.setToggleGroup(people);
+        scarlet.setToggleGroup(people);
+        white.setToggleGroup(people);
+        peacock.setToggleGroup(people);
+
+        plum.setOnAction(e-> personChosen2(submit));
+        green.setOnAction(e-> personChosen2(submit));
+        mustard.setOnAction(e-> personChosen2(submit));
+        scarlet.setOnAction(e-> personChosen2(submit));
+        white.setOnAction(e-> personChosen2(submit));
+        peacock.setOnAction(e-> personChosen2(submit));
+
+        //{"Study", "Hall", "Lounge", "Dining Room", "Kitchen", "Ballroom", "Conservatory", "Billiard Room", "Library"};
+        //rooms
+        RadioButton study, hall, lounge, diningRoom, kitchen, ballroom, conservatory, billiardRoom, library;
+        study =new RadioButton("Study");
+        hall= new RadioButton("Hall");
+        lounge= new RadioButton("Lounge");
+        diningRoom= new RadioButton("Dining Room");
+        kitchen = new RadioButton("Kitchen");
+        ballroom = new RadioButton("Ballroom");
+        conservatory = new RadioButton("Conservatory");
+        billiardRoom=new RadioButton("Billiard Room");
+        library=new RadioButton("Library");
+
+
+        ToggleGroup rooms = new ToggleGroup();
+
+        study.setToggleGroup(rooms);
+        hall.setToggleGroup(rooms);
+        lounge.setToggleGroup(rooms);
+        diningRoom.setToggleGroup(rooms);
+        kitchen.setToggleGroup(rooms);
+        ballroom.setToggleGroup(rooms);
+        conservatory.setToggleGroup(rooms);
+        billiardRoom.setToggleGroup(rooms);
+        library.setToggleGroup(rooms);
+
+        study.setOnAction(e-> roomChosen(submit));
+        hall.setOnAction(e-> roomChosen(submit));
+        lounge.setOnAction(e-> roomChosen(submit));
+        diningRoom.setOnAction(e-> roomChosen(submit));
+        kitchen.setOnAction(e-> roomChosen(submit));
+        ballroom.setOnAction(e-> roomChosen(submit));
+        conservatory.setOnAction(e-> roomChosen(submit));
+        billiardRoom.setOnAction(e-> roomChosen(submit));
+        library.setOnAction(e-> roomChosen(submit));
+
+        submit.setOnAction(e->{
+            System.out.println("Correct Answer: ");
+            for(int i=0; i<3; i++){
+                System.out.println(envelope.get(i));
+            }
+            Stage s3 = new Stage();
+            VBox v = new VBox();
+            Label win = new Label(currentPlayer.getName() + " has won the game!\nThe answer was " + finalGuess[0] + ", " + finalGuess[1] + ", " + finalGuess[2]);
+            Label lose = new Label(currentPlayer.getName() + " was wrong!");
+            Label allLose = new Label("EVERYONE WAS WRONG");
+            finalGuess[0] = ((RadioButton)(rooms.getSelectedToggle())).getText();
+            finalGuess[1]=((RadioButton)(weapons.getSelectedToggle())).getText();
+            finalGuess[2] = ((RadioButton)(people.getSelectedToggle())).getText();
+            for(int i=0; i<3; i++){
+                System.out.println(finalGuess[i]);
+            }
+            //people, weapon, room
+            if(finalGuess[0].equals((envelope.get(2)).getName()) && finalGuess[1].equals((envelope.get(1)).getName()) && finalGuess[2].equals((envelope.get(0)).getName())){
+                v.getChildren().add(win);
+            }
+            else{
+                v.getChildren().add(lose);
+                if(currentPlayer.getNum()==1){
+                    p1Out=true;
+                    turnCounter++;
+                    currentPlayer=p2;
+                }
+                else if (currentPlayer.getNum()==2){
+                    p2Out=true;
+                    turnCounter++;
+                    currentPlayer=p3;
+                }
+                else if(currentPlayer.getNum()==3){
+                    p3Out=true;
+                    turnCounter++;
+                    currentPlayer=p4;
+                }
+                else if (currentPlayer.getNum()==4){
+                    p4Out=true;
+                    turnCounter=0;
+                    currentPlayer=p1;
+                }
+                if(p1Out && p2Out && p3Out && p4Out){
+                    v.getChildren().remove(lose);
+                    v.getChildren().add(allLose);
+                    mainPane.getChildren().removeAll();
+                }
+            }
+            Scene scenee = new Scene(v, 400, 250);
+            s3.setScene(scenee);
+            s3.show();
+            s.close();
+        });
+
+        HBox mainLayout = new HBox(7);
+        VBox roomLayout = new VBox(5);
+        VBox weaponLayout= new VBox(5);
+        VBox peopleLayout = new VBox(5);
+        Label roomLabel = new Label("Pick a room");
+
+        mainLayout.getChildren().addAll(roomLayout, weaponLayout, peopleLayout);
+        roomLayout.getChildren().addAll(roomLabel, study, hall, lounge, diningRoom, kitchen, ballroom, conservatory, billiardRoom, library);
+        weaponLayout.getChildren().addAll(weaponLabel, knife, gun, candlestick, leadPipe, wrench, rope, submit);
+        peopleLayout.getChildren().addAll(personLabel, plum, green, mustard, scarlet, white, peacock);
+
+        Scene scene1= new Scene(mainLayout, 400, 250);
+        s.setScene(scene1);
+
+        s.show();
+    }
+
     public void guess(Player p){
         Stage stage = new Stage();
         stage.setTitle("Guess");
@@ -734,6 +949,24 @@ public class MainFile extends Application {
     public void playerChosen(Button submit){
         playerAns=true;
         if(weaponAns==true && personAns==true && playerAns ==true){
+            submit.setDisable(false);
+        }
+    }
+    public void weaponChosen2(Button submit){
+        weaponFinalAns=true;
+        if(weaponFinalAns ==true && personFinalAns ==true && roomFinalAns==true){
+            submit.setDisable(false);
+        }
+    }
+    public void personChosen2(Button submit){
+        personFinalAns=true;
+        if(weaponFinalAns ==true && personFinalAns ==true && roomFinalAns==true){
+            submit.setDisable(false);
+        }
+    }
+    public void roomChosen(Button submit){
+        roomFinalAns=true;
+        if(weaponFinalAns ==true && personFinalAns ==true && roomFinalAns==true){
             submit.setDisable(false);
         }
     }
