@@ -27,6 +27,10 @@ public class MainFile extends Application {
     private Tile[] tiles;
     private Button diceRoll;
     private Player currentPlayer;
+    private Player p1;
+    private Player p2;
+    private Player p3;
+    private Player p4;
 
     private int turnCounter = 0;
 
@@ -44,7 +48,7 @@ public class MainFile extends Application {
         boardImageView.setFitHeight(650);
         mainPane.getChildren().add(boardImageView);
 
-        Player p1 = new Player(new Image("green.png"), "Mr. Green", 1, 183);
+        p1 = new Player(new Image("green.png"), "Mr. Green", 1, 183);
         currentPlayer = p1;
         ImageView p1view = p1.getImageView();
         p1view.setFitWidth(20);
@@ -53,7 +57,7 @@ public class MainFile extends Application {
         p1view.setY(605);
         mainPane.getChildren().add(p1view);
 
-        Player p2 = new Player(new Image("mustard.png"), "Colonel Mustard", 2, 196);
+        p2 = new Player(new Image("mustard.png"), "Colonel Mustard", 2, 196);
         ImageView p2view = p2.getImageView();
         p2view.setFitWidth(20);
         p2view.setFitHeight(20);
@@ -61,7 +65,7 @@ public class MainFile extends Application {
         p2view.setY(200);
         mainPane.getChildren().add(p2view);
 
-        Player p3 = new Player(new Image("scarlet.png"), "Miss Scarlet", 3, 194);
+        p3 = new Player(new Image("scarlet.png"), "Miss Scarlet", 3, 194);
         ImageView p3view = p3.getImageView();
         p3view.setFitWidth(20);
         p3view.setFitHeight(20);
@@ -69,7 +73,7 @@ public class MainFile extends Application {
         p3view.setY(35);
         mainPane.getChildren().add(p3view);
 
-        Player p4 = new Player(new Image("plum.png"), "Professor Plum", 4, 195);
+        p4 = new Player(new Image("plum.png"), "Professor Plum", 4, 195);
         ImageView p4view = p4.getImageView();
         p4view.setFitWidth(20);
         p4view.setFitHeight(20);
@@ -506,45 +510,46 @@ public class MainFile extends Application {
         peacock.setOnAction(e-> personChosen(submit));
 
         //players
-        RadioButton p1, p2, p3, p4;
-        p1 =new RadioButton("Player 1");
-        p2= new RadioButton("Player 2");
-        p3= new RadioButton("Player 3");
-        p4= new RadioButton("Player 4");
+        RadioButton player1, player2, player3, player4;
+        player1 =new RadioButton("Player 1");
+        player2= new RadioButton("Player 2");
+        player3= new RadioButton("Player 3");
+        player4= new RadioButton("Player 4");
 
         ToggleGroup player = new ToggleGroup();
 
-        p1.setToggleGroup(player);
-        p2.setToggleGroup(player);
-        p3.setToggleGroup(player);
-        p4.setToggleGroup(player);
+        player1.setToggleGroup(player);
+        player2.setToggleGroup(player);
+        player3.setToggleGroup(player);
+        player4.setToggleGroup(player);
 
         int pNum = p.getNum();
         if(pNum==1){
-            p1.setDisable(true);
+            player1.setDisable(true);
         }
         else if (pNum==2){
-            p2.setDisable(true);
+            player2.setDisable(true);
         }
         else if (pNum==3){
-            p3.setDisable(true);
+            player3.setDisable(true);
         }
         else if (pNum==4){
-            p4.setDisable(true);
+            player4.setDisable(true);
         }
-        p1.setOnAction(e -> playerChosen(submit));
-        p2.setOnAction(e-> playerChosen(submit));
-        p3.setOnAction(e-> playerChosen(submit));
-        p4.setOnAction(e-> playerChosen(submit));
+        player1.setOnAction(e -> playerChosen(submit));
+        player2.setOnAction(e-> playerChosen(submit));
+        player3.setOnAction(e-> playerChosen(submit));
+        player4.setOnAction(e-> playerChosen(submit));
 
         submit.setOnAction(e->{
             currGuess[0] = ((RadioButton)(player.getSelectedToggle())).getText();
             currGuess[1]=((RadioButton)(weapons.getSelectedToggle())).getText();
             currGuess[2] = ((RadioButton)(people.getSelectedToggle())).getText();
-            currGuess[3] = p.getCurrentRoom().toString();
+            currGuess[3] = p.getCurrentRoom().getName();
             for(int i=0; i<4; i++){
                 System.out.println(currGuess[i]);
             }
+            guess2();
             stage.close();
         });
 
@@ -554,7 +559,7 @@ public class MainFile extends Application {
         VBox peopleLayout = new VBox(5);
 
         mainLayout.getChildren().addAll(playerLayout, weaponLayout, peopleLayout);
-        playerLayout.getChildren().addAll(playerLabel, p1, p2, p3, p4);
+        playerLayout.getChildren().addAll(playerLabel, player1, player2, player3, player4);
         weaponLayout.getChildren().addAll(weaponLabel, knife, gun, candlestick, leadPipe, wrench, rope, submit, labelresponse);
         peopleLayout.getChildren().addAll(personLabel, plum, green, mustard, scarlet, white, peacock);
 
@@ -564,6 +569,150 @@ public class MainFile extends Application {
         stage.show();
         //http://www.learningaboutelectronics.com/Articles/Multiple-choice-test-question-in-JavaFX.php
     }
+    //used to see if the cards are right
+    public void guess2(){
+        Stage stage = new Stage();
+        stage.setTitle("Guess 2");
+        Button submit = new Button("Submit");
+        submit.setDisable(true);
+        System.out.println("\n");
+        int numOfCards=0;
+        RadioButton weapon = null;
+        RadioButton person = null;
+        RadioButton room = null;
+        ToggleGroup t = new ToggleGroup();
+        if(currGuess[0].equals("Player 1")){
+            for(int i=0; i<(p1.getCards()).length; i++){
+                System.out.println((p1.getCards())[i]);
+            }
+            for(int i=0; i<(p1.getCards()).length; i++){
+                //weapon check
+                if((((p1.getCards())[i]).getName()).equals(currGuess[1])){
+                    numOfCards++;
+                    weapon = new RadioButton(currGuess[1]);
+                }
+                //person
+                else if((((p1.getCards())[i]).getName()).equals(currGuess[2])){
+                    numOfCards++;
+                    person = new RadioButton(currGuess[2]);
+                }
+                else if((((p1.getCards())[i]).getName()).equals(currGuess[3])){
+                    numOfCards++;
+                    room = new RadioButton(currGuess[3]);
+                }
+            }
+        }
+        else if(currGuess[0].equals("Player 2")){
+            for(int i=0; i<(p2.getCards()).length; i++){
+                System.out.println((p2.getCards())[i]);
+            }
+            for(int i=0; i<(p2.getCards()).length; i++){
+                //weapon check
+                if((((p2.getCards())[i]).getName()).equals(currGuess[1])){
+                    numOfCards++;
+                    weapon = new RadioButton(currGuess[1]);
+                }
+                //person
+                else if((((p2.getCards())[i]).getName()).equals(currGuess[2])){
+                    numOfCards++;
+                    person = new RadioButton(currGuess[2]);
+                }
+                else if((((p2.getCards())[i]).getName()).equals(currGuess[3])){
+                    numOfCards++;
+                    room = new RadioButton(currGuess[3]);
+                }
+            }
+        }
+        else if(currGuess[0].equals("Player 3")){
+            for(int i=0; i<(p3.getCards()).length; i++){
+                System.out.println((p3.getCards())[i]);
+            }
+            for(int i=0; i<(p3.getCards()).length; i++){
+                //weapon check
+                if((((p3.getCards())[i]).getName()).equals(currGuess[1])){
+                    numOfCards++;
+                    weapon = new RadioButton(currGuess[1]);
+                }
+                //person
+                else if((((p3.getCards())[i]).getName()).equals(currGuess[2])){
+                    numOfCards++;
+                    person = new RadioButton(currGuess[2]);
+                }
+                else if((((p3.getCards())[i]).getName()).equals(currGuess[3])){
+                    numOfCards++;
+                    room = new RadioButton(currGuess[3]);
+                }
+            }
+        }
+        else if(currGuess[0].equals("Player 4")){
+            for(int i=0; i<(p4.getCards()).length; i++){
+                System.out.println((p4.getCards())[i]);
+            }
+            for(int i=0; i<(p4.getCards()).length; i++){
+                //weapon check
+                if((((p4.getCards())[i]).getName()).equals(currGuess[1])){
+                    numOfCards++;
+                    weapon = new RadioButton(currGuess[1]);
+                }
+                //person
+                else if((((p4.getCards())[i]).getName()).equals(currGuess[2])){
+                    numOfCards++;
+                    person = new RadioButton(currGuess[2]);
+                }
+                else if((((p4.getCards())[i]).getName()).equals(currGuess[3])){
+                    numOfCards++;
+                    room = new RadioButton(currGuess[3]);
+                }
+            }
+        }
+        VBox pane = new VBox(5);
+        if(numOfCards==0){
+            pane.getChildren().add(new Label (currGuess[0] + " had none of the cards you guessed."));
+        }
+        //at least one button is not null
+        else{
+            if(weapon != null){
+                pane.getChildren().add(weapon);
+                weapon.setToggleGroup(t);
+                weapon.setOnAction(e->{
+                    submit.setDisable(false);
+                });
+            }
+            if(person!=null){
+                pane.getChildren().add(person);
+                person.setToggleGroup(t);
+                person.setOnAction(e->{
+                    submit.setDisable(false);
+                });
+            }
+            if(room!=null){
+                pane.getChildren().add(room);
+                room.setToggleGroup(t);
+                room.setOnAction(e->{
+                    submit.setDisable(false);
+                });
+            }
+            pane.getChildren().add(submit);
+        }
+
+
+        submit.setOnAction(e->{
+            Stage s2 = new Stage();
+            VBox p2 = new VBox(5);
+            Label l = new Label(((RadioButton)(t.getSelectedToggle())).getText());
+            p2.getChildren().add(l);
+            //for some reason does not put a new window with what the person chose. It puts a million errors
+            Scene scene1 = new Scene(pane, 400, 250);
+            stage.setScene(scene1);
+            stage.close();
+        });
+        Scene scene1= new Scene(pane, 400, 250);
+        stage.setScene(scene1);
+
+        stage.show();
+
+    }
+
     public void weaponChosen(Button submit){
         weaponAns=true;
         if(weaponAns==true && personAns==true && playerAns==true){
