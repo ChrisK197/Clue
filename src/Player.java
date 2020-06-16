@@ -84,6 +84,15 @@ public class Player {
         return numCards;
     }
 
+    public String getCardsAsStringNL() {
+        String s = "";
+        for (Card c : cards) {
+            s += c.getName();
+            s += "\n";
+        }
+        return s;
+    }
+
     protected int move(){
         int roll = (int)(Math.random()*6)+1;
         int roll2 = (int)(Math.random()*6)+1;

@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -1016,6 +1017,78 @@ public class MainFile extends Application {
             if(currplayer >= 4)
                 currplayer = 0;
         }
+
+        Button p1Cards = new Button("Player 1 Cards");
+        mainPane.getChildren().add(p1Cards);
+        p1Cards.setLayoutX(660);
+        p1Cards.setLayoutY(0);
+        p1Cards.setOnAction(e->{
+            Stage stage = new Stage();
+            stage.setTitle("Player 1's Hand");
+            Pane pane = new Pane();
+            Text t1 = new Text(25, 50, "Player  1's Cards:");
+            Text t2 = new Text(25, 250, p1.getCardsAsStringNL());
+            t1.setFont(new Font(22));
+            t2.setFont(new Font(22));
+            pane.getChildren().addAll(t1, t2);
+            Scene ss = new Scene(pane, 250, 500);
+            stage.setScene(ss);
+            stage.show();
+        });
+
+        Button p2Cards = new Button("Player 2 Cards");
+        mainPane.getChildren().add(p2Cards);
+        p2Cards.setLayoutX(660);
+        p2Cards.setLayoutY(50);
+        p2Cards.setOnAction(e->{
+            Stage stage = new Stage();
+            stage.setTitle("Player 2's Hand");
+            Pane pane = new Pane();
+            Text t1 = new Text(25, 50, "Player  2's Cards:");
+            Text t2 = new Text(25, 250, p2.getCardsAsStringNL());
+            t1.setFont(new Font(22));
+            t2.setFont(new Font(22));
+            pane.getChildren().addAll(t1, t2);
+            Scene ss = new Scene(pane, 250, 500);
+            stage.setScene(ss);
+            stage.show();
+        });
+
+        Button p3Cards = new Button("Player 3 Cards");
+        mainPane.getChildren().add(p3Cards);
+        p3Cards.setLayoutX(660);
+        p3Cards.setLayoutY(100);
+        p3Cards.setOnAction(e->{
+            Stage stage = new Stage();
+            stage.setTitle("Player 3's Hand");
+            Pane pane = new Pane();
+            Text t1 = new Text(25, 50, "Player  3's Cards:");
+            Text t2 = new Text(25, 250, p3.getCardsAsStringNL());
+            t1.setFont(new Font(22));
+            t2.setFont(new Font(22));
+            pane.getChildren().addAll(t1, t2);
+            Scene ss = new Scene(pane, 250, 500);
+            stage.setScene(ss);
+            stage.show();
+        });
+
+        Button p4Cards = new Button("Player 4 Cards");
+        mainPane.getChildren().add(p4Cards);
+        p4Cards.setLayoutX(660);
+        p4Cards.setLayoutY(150);
+        p4Cards.setOnAction(e->{
+            Stage stage = new Stage();
+            stage.setTitle("Player 4's Hand");
+            Pane pane = new Pane();
+            Text t1 = new Text(25, 50, "Player  4's Cards:");
+            Text t2 = new Text(25, 250, p4.getCardsAsStringNL());
+            t1.setFont(new Font(22));
+            t2.setFont(new Font(22));
+            pane.getChildren().addAll(t1, t2);
+            Scene ss = new Scene(pane, 250, 500);
+            stage.setScene(ss);
+            stage.show();
+        });
 
         return envelope;
     }
