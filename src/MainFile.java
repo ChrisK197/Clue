@@ -553,13 +553,14 @@ public class MainFile extends Application {
             stage.close();
         });
 
+        Label turn = new Label(" Turn the computer\n to the player\n you are asking \n before you click submit.");
         HBox mainLayout = new HBox(7);
         VBox playerLayout = new VBox(5);
         VBox weaponLayout= new VBox(5);
         VBox peopleLayout = new VBox(5);
 
         mainLayout.getChildren().addAll(playerLayout, weaponLayout, peopleLayout);
-        playerLayout.getChildren().addAll(playerLabel, player1, player2, player3, player4);
+        playerLayout.getChildren().addAll(playerLabel, player1, player2, player3, player4, turn);
         weaponLayout.getChildren().addAll(weaponLabel, knife, gun, candlestick, leadPipe, wrench, rope, submit, labelresponse);
         peopleLayout.getChildren().addAll(personLabel, plum, green, mustard, scarlet, white, peacock);
 
@@ -671,6 +672,9 @@ public class MainFile extends Application {
         }
         //at least one button is not null
         else{
+            Label prompt = new Label("What would you like to show?");
+            pane.getChildren().add(prompt);
+            Label end = new Label ("Turn the computer back to the player\nyou are showing after clicking submit");
             if(weapon != null){
                 pane.getChildren().add(weapon);
                 weapon.setToggleGroup(t);
@@ -693,17 +697,19 @@ public class MainFile extends Application {
                 });
             }
             pane.getChildren().add(submit);
+            pane.getChildren().add(end);
         }
 
 
         submit.setOnAction(e->{
             Stage s2 = new Stage();
-            VBox p2 = new VBox(5);
-            Label l = new Label(((RadioButton)(t.getSelectedToggle())).getText());
-            p2.getChildren().add(l);
+            VBox pane2 = new VBox(5);
+            Label l = new Label(currGuess[0] + " is showing you the " + ((RadioButton)(t.getSelectedToggle())).getText());
+            pane2.getChildren().add(l);
             //for some reason does not put a new window with what the person chose. It puts a million errors
-            Scene scene1 = new Scene(pane, 400, 250);
-            stage.setScene(scene1);
+            Scene s = new Scene(pane2, 400, 250);
+            s2.setScene(s);
+            s2.show();
             stage.close();
         });
         Scene scene1= new Scene(pane, 400, 250);
