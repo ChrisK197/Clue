@@ -26,6 +26,25 @@ public class Room extends Tile{
     }
 
     @Override
+    public void addPlayer(Player p){
+        ImageView i = p.getImageView();
+        p.setCurrentSpace(getNum());
+        p.setCurrentRoom(name);
+        if(p.getNum() == 1){
+            i.setX(p1x); i.setY(p1y);
+        }
+        else if(p.getNum() == 2){
+            i.setX(p2x); i.setY(p2y);
+        }
+        else if(p.getNum() == 3){
+            i.setX(p3x); i.setY(p3y);
+        }
+        else if(p.getNum() == 4){
+            i.setX(p4x); i.setY(p4y);
+        }
+    }
+
+    @Override
     public ImageView getImageView() {
         return imageView;
     }

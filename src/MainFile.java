@@ -187,7 +187,17 @@ public class MainFile extends Application {
         Room[] temparr = {study, hall, lounge, library, diningRoom, billiardRoom, conservatory, ballRoom, kitchen};
         for(Room r : temparr){
             mainPane.getChildren().add(r.getImageView());
-            //r.highlight();
+            r.getImageView().setOnMouseClicked(e ->{
+                diceRoll.setDisable(false);
+                r.unhighlight();
+                for(int i = Tile.highlightedTiles.size() - 1; i >= 0; i--) {
+                    Tile.highlightedTiles.remove(i).unhighlight();
+                }
+                r.addPlayer(currentPlayer);
+                System.out.println(currentPlayer.getImageView().getX());
+                System.out.println(currentPlayer.getImageView().getY());
+            });
+            r.highlight();
         }
 
         tiles = new Tile[198]; //we don't have a 0, we started at 1
@@ -221,6 +231,7 @@ public class MainFile extends Application {
                         currentPlayer.getImageView().setX(tiles[finalCount].getX());
                         currentPlayer.getImageView().setY(tiles[finalCount].getY());
                         currentPlayer.setCurrentSpace(tiles[finalCount].getNum());
+                        currentPlayer.setCurrentRoom(null);
                     });
                     mainPane.getChildren().add(tiles[count].getImageView());
                     //tiles[count].highlight();
