@@ -212,8 +212,6 @@ public class MainFile extends Application {
                     Tile.highlightedTiles.remove(i).unhighlight();
                 }
                 r.addPlayer(currentPlayer);
-                System.out.println(currentPlayer.getImageView().getX());
-                System.out.println(currentPlayer.getImageView().getY());
                 currentPlayer.setCurrentRoom(r);
                 guess(currentPlayer);
             });
@@ -589,9 +587,9 @@ public class MainFile extends Application {
         library.setOnAction(e-> roomChosen(submit));
 
         submit.setOnAction(e->{
-            System.out.println("Correct Answer: ");
+            //System.out.println("Correct Answer: ");
             for(int i=0; i<3; i++){
-                System.out.println(envelope.get(i));
+                //System.out.println(envelope.get(i));
             }
             Stage s3 = new Stage();
             VBox v = new VBox();
@@ -602,7 +600,7 @@ public class MainFile extends Application {
             finalGuess[1]=((RadioButton)(weapons.getSelectedToggle())).getText();
             finalGuess[2] = ((RadioButton)(people.getSelectedToggle())).getText();
             for(int i=0; i<3; i++){
-                System.out.println(finalGuess[i]);
+                //System.out.println(finalGuess[i]);
             }
             //people, weapon, room
             if(finalGuess[0].equals((envelope.get(2)).getName()) && finalGuess[1].equals((envelope.get(1)).getName()) && finalGuess[2].equals((envelope.get(0)).getName())){
@@ -763,7 +761,7 @@ public class MainFile extends Application {
             currGuess[2] = ((RadioButton)(people.getSelectedToggle())).getText();
             currGuess[3] = p.getCurrentRoom().getName();
             for(int i=0; i<4; i++){
-                System.out.println(currGuess[i]);
+                //System.out.println(currGuess[i]);
             }
             guess2();
             stage.close();
@@ -792,7 +790,7 @@ public class MainFile extends Application {
         stage.setTitle("Guess 2");
         Button submit = new Button("Submit");
         submit.setDisable(true);
-        System.out.println("\n");
+        //System.out.println("\n");
         int numOfCards=0;
         RadioButton weapon = null;
         RadioButton person = null;
@@ -800,7 +798,7 @@ public class MainFile extends Application {
         ToggleGroup t = new ToggleGroup();
         if(currGuess[0].equals("Player 1")){
             for(int i=0; i<(p1.getCards()).length; i++){
-                System.out.println((p1.getCards())[i]);
+                //System.out.println((p1.getCards())[i]);
             }
             for(int i=0; i<(p1.getCards()).length; i++){
                 //weapon check
@@ -821,7 +819,7 @@ public class MainFile extends Application {
         }
         else if(currGuess[0].equals("Player 2")){
             for(int i=0; i<(p2.getCards()).length; i++){
-                System.out.println((p2.getCards())[i]);
+                //System.out.println((p2.getCards())[i]);
             }
             for(int i=0; i<(p2.getCards()).length; i++){
                 //weapon check
@@ -842,7 +840,7 @@ public class MainFile extends Application {
         }
         else if(currGuess[0].equals("Player 3")){
             for(int i=0; i<(p3.getCards()).length; i++){
-                System.out.println((p3.getCards())[i]);
+                //System.out.println((p3.getCards())[i]);
             }
             for(int i=0; i<(p3.getCards()).length; i++){
                 //weapon check
@@ -863,7 +861,7 @@ public class MainFile extends Application {
         }
         else if(currGuess[0].equals("Player 4")){
             for(int i=0; i<(p4.getCards()).length; i++){
-                System.out.println((p4.getCards())[i]);
+                //System.out.println((p4.getCards())[i]);
             }
             for(int i=0; i<(p4.getCards()).length; i++){
                 //weapon check
