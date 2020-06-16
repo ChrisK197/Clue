@@ -197,7 +197,7 @@ public class MainFile extends Application {
                 System.out.println(currentPlayer.getImageView().getX());
                 System.out.println(currentPlayer.getImageView().getY());
             });
-            r.highlight();
+            //r.highlight();
         }
 
         tiles = new Tile[198]; //we don't have a 0, we started at 1
@@ -257,139 +257,139 @@ public class MainFile extends Application {
                 }
                 //hall
                 else if(row==3 && col==13){
-                    study.setP1x(xval + 23.8*col);
-                    study.setP1y(yval + 24*row);
+                    hall.setP1x(xval + 23.8*col);
+                    hall.setP1y(yval + 24*row);
                 }
                 else if(row==3 && col==12){
-                    study.setP2x(xval + 23.8*col);
-                    study.setP2y(yval + 24*row);
+                    hall.setP2x(xval + 23.8*col);
+                    hall.setP2y(yval + 24*row);
                 }
                 else if(row==3 && col==11){
-                    study.setP3x(xval + 23.8*col);
-                    study.setP3y(yval + 24*row);
+                    hall.setP3x(xval + 23.8*col);
+                    hall.setP3y(yval + 24*row);
                 }
                 else if(row==3 && col==10){
-                    study.setP4x(xval + 23.8*col);
-                    study.setP4y(yval + 24*row);
+                    hall.setP4x(xval + 23.8*col);
+                    hall.setP4y(yval + 24*row);
                 }
                 //lounge
                 else if(row==2 && col==22){
-                    study.setP1x(xval + 23.8*col);
-                    study.setP1y(yval + 24*row);
+                    lounge.setP1x(xval + 23.8*col);
+                    lounge.setP1y(yval + 24*row);
                 }
                 else if(row==2 && col==21){
-                    study.setP2x(xval + 23.8*col);
-                    study.setP2y(yval + 24*row);
+                    lounge.setP2x(xval + 23.8*col);
+                    lounge.setP2y(yval + 24*row);
                 }
                 else if(row==2 && col==20){
-                    study.setP3x(xval + 23.8*col);
-                    study.setP3y(yval + 24*row);
+                    lounge.setP3x(xval + 23.8*col);
+                    lounge.setP3y(yval + 24*row);
                 }
                 else if(row==2 && col==19){
-                    study.setP4x(xval + 23.8*col);
-                    study.setP4y(yval + 24*row);
+                    lounge.setP4x(xval + 23.8*col);
+                    lounge.setP4y(yval + 24*row);
                 }
                 //library
                 else if(row==6 && col==5){
-                    study.setP1x(xval + 23.8*col);
-                    study.setP1y(yval + 24*row);
+                    library.setP1x(xval + 23.8*col);
+                    library.setP1y(yval + 24*row);
                 }
                 else if(row==6 && col==4){
-                    study.setP2x(xval + 23.8*col);
-                    study.setP2y(yval + 24*row);
+                    library.setP2x(xval + 23.8*col);
+                    library.setP2y(yval + 24*row);
                 }
                 else if(row==6 && col==3){
-                    study.setP3x(xval + 23.8*col);
-                    study.setP3y(yval + 24*row);
+                    library.setP3x(xval + 23.8*col);
+                    library.setP3y(yval + 24*row);
                 }
                 else if(row==6 && col==2){
-                    study.setP4x(xval + 23.8*col);
-                    study.setP4y(yval + 24*row);
+                    library.setP4x(xval + 23.8*col);
+                    library.setP4y(yval + 24*row);
                 }
                 //Dining Room
                 else if(row==12 && col==22){
-                    study.setP1x(xval + 23.8*col);
-                    study.setP1y(yval + 24*row);
+                    diningRoom.setP1x(xval + 23.8*col);
+                    diningRoom.setP1y(yval + 24*row);
                 }
                 else if(row==12 && col==21){
-                    study.setP2x(xval + 23.8*col);
-                    study.setP2y(yval + 24*row);
+                    diningRoom.setP2x(xval + 23.8*col);
+                    diningRoom.setP2y(yval + 24*row);
                 }
                 else if(row==12 && col==20){
-                    study.setP3x(xval + 23.8*col);
-                    study.setP3y(yval + 24*row);
+                    diningRoom.setP3x(xval + 23.8*col);
+                    diningRoom.setP3y(yval + 24*row);
                 }
                 else if(row==12 && col==19){
-                    study.setP4x(xval + 23.8*col);
-                    study.setP4y(yval + 24*row);
+                    diningRoom.setP4x(xval + 23.8*col);
+                    diningRoom.setP4y(yval + 24*row);
                 }
                 //Billiard Room
                 else if(row==14 && col==4){
-                    study.setP1x(xval + 23.8*col);
-                    study.setP1y(yval + 24*row);
+                    billiardRoom.setP1x(xval + 23.8*col);
+                    billiardRoom.setP1y(yval + 24*row);
                 }
                 else if(row==14 && col==3){
-                    study.setP2x(xval + 23.8*col);
-                    study.setP2y(yval + 24*row);
+                    billiardRoom.setP2x(xval + 23.8*col);
+                    billiardRoom.setP2y(yval + 24*row);
                 }
                 else if(row==14 && col==2){
-                    study.setP3x(xval + 23.8*col);
-                    study.setP3y(yval + 24*row);
+                    billiardRoom.setP3x(xval + 23.8*col);
+                    billiardRoom.setP3y(yval + 24*row);
                 }
                 else if(row==14 && col==1){
-                    study.setP4x(xval + 23.8*col);
-                    study.setP4y(yval + 24*row);
+                    billiardRoom.setP4x(xval + 23.8*col);
+                    billiardRoom.setP4y(yval + 24*row);
                 }
                 //Conservatory
                 else if(row==21 && col==4){
-                    study.setP1x(xval + 23.8*col);
-                    study.setP1y(yval + 24*row);
+                    conservatory.setP1x(xval + 23.8*col);
+                    conservatory.setP1y(yval + 24*row);
                 }
                 else if(row==21 && col==3){
-                    study.setP2x(xval + 23.8*col);
-                    study.setP2y(yval + 24*row);
+                    conservatory.setP2x(xval + 23.8*col);
+                    conservatory.setP2y(yval + 24*row);
                 }
                 else if(row==21 && col==2){
-                    study.setP3x(xval + 23.8*col);
-                    study.setP3y(yval + 24*row);
+                    conservatory.setP3x(xval + 23.8*col);
+                    conservatory.setP3y(yval + 24*row);
                 }
                 else if(row==21 && col==1){
-                    study.setP4x(xval + 23.8*col);
-                    study.setP4y(yval + 24*row);
+                    conservatory.setP4x(xval + 23.8*col);
+                    conservatory.setP4y(yval + 24*row);
                 }
                 //Ballroom
                 else if(row==20 && col==13){
-                    study.setP1x(xval + 23.8*col);
-                    study.setP1y(yval + 24*row);
+                    ballRoom.setP1x(xval + 23.8*col);
+                    ballRoom.setP1y(yval + 24*row);
                 }
                 else if(row==20 && col==12){
-                    study.setP2x(xval + 23.8*col);
-                    study.setP2y(yval + 24*row);
+                    ballRoom.setP2x(xval + 23.8*col);
+                    ballRoom.setP2y(yval + 24*row);
                 }
                 else if(row==20 && col==11){
-                    study.setP3x(xval + 23.8*col);
-                    study.setP3y(yval + 24*row);
+                    ballRoom.setP3x(xval + 23.8*col);
+                    ballRoom.setP3y(yval + 24*row);
                 }
                 else if(row==20 && col==10){
-                    study.setP4x(xval + 23.8*col);
-                    study.setP4y(yval + 24*row);
+                    ballRoom.setP4x(xval + 23.8*col);
+                    ballRoom.setP4y(yval + 24*row);
                 }
                 //kitchen
                 else if(row==20 && col==22){
-                    study.setP1x(xval + 23.8*col);
-                    study.setP1y(yval + 24*row);
+                    kitchen.setP1x(xval + 23.8*col);
+                    kitchen.setP1y(yval + 24*row);
                 }
                 else if(row==20 && col==21){
-                    study.setP2x(xval + 23.8*col);
-                    study.setP2y(yval + 24*row);
+                    kitchen.setP2x(xval + 23.8*col);
+                    kitchen.setP2y(yval + 24*row);
                 }
                 else if(row==20 && col==20){
-                    study.setP3x(xval + 23.8*col);
-                    study.setP3y(yval + 24*row);
+                    kitchen.setP3x(xval + 23.8*col);
+                    kitchen.setP3y(yval + 24*row);
                 }
                 else if(row==20 && col==19){
-                    study.setP4x(xval + 23.8*col);
-                    study.setP4y(yval + 24*row);
+                    kitchen.setP4x(xval + 23.8*col);
+                    kitchen.setP4y(yval + 24*row);
                 }
             }
         }
