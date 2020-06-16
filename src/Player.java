@@ -16,7 +16,7 @@ public class Player {
     private ImageView icon;
     private String name;
     private int num;
-    private String currentRoom = null;
+    private Room currentRoom = null;
     private int currentSpace;
     private int numCards = 0;
 
@@ -60,7 +60,7 @@ public class Player {
         return num;
     }
 
-    public String getCurrentRoom() {
+    public Room getCurrentRoom() {
         return currentRoom;
     }
 
@@ -76,7 +76,7 @@ public class Player {
         this.cards = cards;
     }
 
-    public void setCurrentRoom(String currentRoom) {
+    public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
     }
 
@@ -103,18 +103,5 @@ public class Player {
         mediaPlayer.play();
 
         return roll;
-
-        //int moves_done = 0;
-
-        //Move function - TODO
-
-        //Use BFS to find the squares (roll) distance or less away
-        //Highlight those squares
-        //Check for a mouse click
-        //Move
-
-        /*while (moves_done < roll) {
-        }*/
-        //Return to main
     }
 }

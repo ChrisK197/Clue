@@ -196,6 +196,8 @@ public class MainFile extends Application {
                 r.addPlayer(currentPlayer);
                 System.out.println(currentPlayer.getImageView().getX());
                 System.out.println(currentPlayer.getImageView().getY());
+                currentPlayer.setCurrentRoom(r);
+                guess(currentPlayer);
             });
             //r.highlight();
         }
@@ -435,7 +437,7 @@ public class MainFile extends Application {
         ps.setScene(scene);
         ps.show();
 
-        guess(p1);
+        //guess(p1);
     }
     public void guess(Player p){
         Stage stage = new Stage();
@@ -539,7 +541,7 @@ public class MainFile extends Application {
             currGuess[0] = ((RadioButton)(player.getSelectedToggle())).getText();
             currGuess[1]=((RadioButton)(weapons.getSelectedToggle())).getText();
             currGuess[2] = ((RadioButton)(people.getSelectedToggle())).getText();
-            currGuess[3] = p.getCurrentRoom();
+            currGuess[3] = p.getCurrentRoom().toString();
             for(int i=0; i<4; i++){
                 System.out.println(currGuess[i]);
             }

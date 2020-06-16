@@ -29,7 +29,7 @@ public class Room extends Tile{
     public void addPlayer(Player p){
         ImageView i = p.getImageView();
         p.setCurrentSpace(getNum());
-        p.setCurrentRoom(name);
+        p.setCurrentRoom(null);
         if(p.getNum() == 1){
             i.setX(p1x); i.setY(p1y);
         }
