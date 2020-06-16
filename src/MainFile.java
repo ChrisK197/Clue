@@ -33,9 +33,9 @@ public class MainFile extends Application {
     public void start(Stage ps){
         Pane mainPane = new Pane();
         //Prints coordinates of mouse click
-        mainPane.setOnMousePressed(e->{
+        /*mainPane.setOnMousePressed(e->{
             System.out.println(e.getX() + ", " + e.getY());
-        });
+        });*/
 
         Image board = new Image("clueboard.jpg");
         ImageView boardImageView = new ImageView();
@@ -187,7 +187,7 @@ public class MainFile extends Application {
         Room[] temparr = {study, hall, lounge, library, diningRoom, billiardRoom, conservatory, ballRoom, kitchen};
         for(Room r : temparr){
             mainPane.getChildren().add(r.getImageView());
-            r.highlight();
+            //r.highlight();
         }
 
         tiles = new Tile[198]; //we don't have a 0, we started at 1
