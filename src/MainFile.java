@@ -1034,7 +1034,7 @@ public class MainFile extends Application {
             Stage stage = new Stage();
             stage.setTitle("Player 1's Hand");
             Pane pane = new Pane();
-            Text t1 = new Text(25, 50, "Player  1's Cards:");
+            Text t1 = new Text(25, 50, "Player 1's Cards:");
             Text t2 = new Text(25, 250, p1.getCardsAsStringNL());
             t1.setFont(new Font(22));
             t2.setFont(new Font(22));
@@ -1052,7 +1052,7 @@ public class MainFile extends Application {
             Stage stage = new Stage();
             stage.setTitle("Player 2's Hand");
             Pane pane = new Pane();
-            Text t1 = new Text(25, 50, "Player  2's Cards:");
+            Text t1 = new Text(25, 50, "Player 2's Cards:");
             Text t2 = new Text(25, 250, p2.getCardsAsStringNL());
             t1.setFont(new Font(22));
             t2.setFont(new Font(22));
@@ -1070,7 +1070,7 @@ public class MainFile extends Application {
             Stage stage = new Stage();
             stage.setTitle("Player 3's Hand");
             Pane pane = new Pane();
-            Text t1 = new Text(25, 50, "Player  3's Cards:");
+            Text t1 = new Text(25, 50, "Player 3's Cards:");
             Text t2 = new Text(25, 250, p3.getCardsAsStringNL());
             t1.setFont(new Font(22));
             t2.setFont(new Font(22));
@@ -1088,7 +1088,7 @@ public class MainFile extends Application {
             Stage stage = new Stage();
             stage.setTitle("Player 4's Hand");
             Pane pane = new Pane();
-            Text t1 = new Text(25, 50, "Player  4's Cards:");
+            Text t1 = new Text(25, 50, "Player 4's Cards:");
             Text t2 = new Text(25, 250, p4.getCardsAsStringNL());
             t1.setFont(new Font(22));
             t2.setFont(new Font(22));
