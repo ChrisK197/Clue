@@ -148,7 +148,7 @@ public class Room extends Tile{
         return p5y;
     }
 
-    public void setp5y(double p5y) {
+    public void setP5y(double p5y) {
         this.p5y = p5y;
     }
 

@@ -294,6 +294,14 @@ public class MainFile extends Application {
                     study.setP4x(xval + 23.8*col);
                     study.setP4y(yval + 24*row);
                 }
+                else if(row==2 && col==1){
+                    study.setP5x(xval + 23.8*col);
+                    study.setP5y(yval + 24*row);
+                }
+                else if(row==2 && col==6){
+                    study.setP6x(xval + 23.8*col);
+                    study.setP6y(yval + 24*row);
+                }
                 //hall
                 else if(row==3 && col==13){
                     hall.setP1x(xval + 23.8*col);
@@ -310,6 +318,14 @@ public class MainFile extends Application {
                 else if(row==3 && col==10){
                     hall.setP4x(xval + 23.8*col);
                     hall.setP4y(yval + 24*row);
+                }
+                else if(row==3 && col==9){
+                    hall.setP5x(xval + 23.8*col);
+                    hall.setP5y(yval + 24*row);
+                }
+                else if(row==3 && col==14){
+                    hall.setP6x(xval + 23.8*col);
+                    hall.setP6y(yval + 24*row);
                 }
                 //lounge
                 else if(row==2 && col==22){
@@ -328,6 +344,14 @@ public class MainFile extends Application {
                     lounge.setP4x(xval + 23.8*col);
                     lounge.setP4y(yval + 24*row);
                 }
+                else if(row==2 && col==18){
+                    lounge.setP5x(xval + 23.8*col);
+                    lounge.setP5y(yval + 24*row);
+                }
+                else if(row==2 && col==23){
+                    lounge.setP6x(xval + 23.8*col);
+                    lounge.setP6y(yval + 24*row);
+                }
                 //library
                 else if(row==6 && col==5){
                     library.setP1x(xval + 23.8*col);
@@ -344,6 +368,14 @@ public class MainFile extends Application {
                 else if(row==6 && col==2){
                     library.setP4x(xval + 23.8*col);
                     library.setP4y(yval + 24*row);
+                }
+                else if(row==6 && col==1){
+                    library.setP5x(xval + 23.8*col);
+                    library.setP5y(yval + 24*row);
+                }
+                else if(row==7 && col==1){
+                    library.setP6x(xval + 23.8*col);
+                    library.setP6y(yval + 24*row);
                 }
                 //Dining Room
                 else if(row==12 && col==22){
@@ -362,6 +394,14 @@ public class MainFile extends Application {
                     diningRoom.setP4x(xval + 23.8*col);
                     diningRoom.setP4y(yval + 24*row);
                 }
+                else if(row==12 && col==18){
+                    diningRoom.setP5x(xval + 23.8*col);
+                    diningRoom.setP5y(yval + 24*row);
+                }
+                else if(row==12 && col==23){
+                    diningRoom.setP6x(xval + 23.8*col);
+                    diningRoom.setP6y(yval + 24*row);
+                }
                 //Billiard Room
                 else if(row==14 && col==4){
                     billiardRoom.setP1x(xval + 23.8*col);
@@ -378,6 +418,14 @@ public class MainFile extends Application {
                 else if(row==14 && col==1){
                     billiardRoom.setP4x(xval + 23.8*col);
                     billiardRoom.setP4y(yval + 24*row);
+                }
+                else if(row==14 && col==0){
+                    billiardRoom.setP5x(xval + 23.8*col);
+                    billiardRoom.setP5y(yval + 24*row);
+                }
+                else if(row==14 && col==5){
+                    billiardRoom.setP6x(xval + 23.8*col);
+                    billiardRoom.setP6y(yval + 24*row);
                 }
                 //Conservatory
                 else if(row==21 && col==4){
@@ -396,6 +444,14 @@ public class MainFile extends Application {
                     conservatory.setP4x(xval + 23.8*col);
                     conservatory.setP4y(yval + 24*row);
                 }
+                else if(row==21 && col==0){
+                    conservatory.setP5x(xval + 23.8*col);
+                    conservatory.setP5y(yval + 24*row);
+                }
+                else if(row==21 && col==5){
+                    conservatory.setP6x(xval + 23.8*col);
+                    conservatory.setP6y(yval + 24*row);
+                }
                 //Ballroom
                 else if(row==20 && col==13){
                     ballRoom.setP1x(xval + 23.8*col);
@@ -413,6 +469,14 @@ public class MainFile extends Application {
                     ballRoom.setP4x(xval + 23.8*col);
                     ballRoom.setP4y(yval + 24*row);
                 }
+                else if(row==20 && col==9){
+                    ballRoom.setP5x(xval + 23.8*col);
+                    ballRoom.setP5y(yval + 24*row);
+                }
+                else if(row==20 && col==14){
+                    ballRoom.setP6x(xval + 23.8*col);
+                    ballRoom.setP6y(yval + 24*row);
+                }
                 //kitchen
                 else if(row==20 && col==22){
                     kitchen.setP1x(xval + 23.8*col);
@@ -429,6 +493,14 @@ public class MainFile extends Application {
                 else if(row==20 && col==19){
                     kitchen.setP4x(xval + 23.8*col);
                     kitchen.setP4y(yval + 24*row);
+                }
+                else if(row==20 && col==18){
+                    kitchen.setP5x(xval + 23.8*col);
+                    kitchen.setP5y(yval + 24*row);
+                }
+                else if(row==20 && col==23){
+                    kitchen.setP6x(xval + 23.8*col);
+                    kitchen.setP6y(yval + 24*row);
                 }
             }
         }
@@ -1038,7 +1110,7 @@ public class MainFile extends Application {
         submit.setOnAction(e->{
             Stage s2 = new Stage();
             VBox pane2 = new VBox(5);
-            Label l = new Label(currGuess[0] + " is showing you the " + ((RadioButton)(t.getSelectedToggle())).getText());
+            Label l = new Label(currGuess[0] + " is showing you the " + ((RadioButton)(t.getSelectedToggle())).getText() + " card.");
             pane2.getChildren().add(l);
             //for some reason does not put a new window with what the person chose. It puts a million errors
             Scene s = new Scene(pane2, 400, 250);
