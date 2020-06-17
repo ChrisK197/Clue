@@ -56,9 +56,9 @@ public class MainFile extends Application {
     public void start(Stage ps){
         mainPane = new Pane();
         //Prints coordinates of mouse click
-        /*mainPane.setOnMousePressed(e->{
+        mainPane.setOnMousePressed(e->{
             System.out.println(e.getX() + ", " + e.getY());
-        });*/
+        });
 
         Image board = new Image("clueboard.jpg");
         ImageView boardImageView = new ImageView();
@@ -104,16 +104,16 @@ public class MainFile extends Application {
         ImageView p5view = p5.getImageView();
         p5view.setFitWidth(20);
         p5view.setFitHeight(20);
-        p5view.setX(45);
-        p5view.setY(700);
+        p5view.setX(38);
+        p5view.setY(462);
         mainPane.getChildren().add(p5view);
 
         p6 = new Player(new Image("white.png"), "Mrs. White", 6, 184);
         ImageView p6view = p6.getImageView();
         p6view.setFitWidth(20);
         p6view.setFitHeight(20);
-        p6view.setX(420);
-        p6view.setY(785);
+        p6view.setX(370);
+        p6view.setY(610);
         mainPane.getChildren().add(p6view);
 
         envelope = distributeCards(p1, p2, p3, p4, p5, p6);
