@@ -603,12 +603,12 @@ public class MainFile extends Application {
             }
             Stage s3 = new Stage();
             VBox v = new VBox();
-            Label win = new Label(currentPlayer.getName() + " has won the game!\nThe answer was " + finalGuess[0] + ", " + finalGuess[1] + ", " + finalGuess[2]);
-            Label lose = new Label(currentPlayer.getName() + " was wrong!");
-            Label allLose = new Label("EVERYONE WAS WRONG");
             finalGuess[0] = ((RadioButton)(rooms.getSelectedToggle())).getText();
             finalGuess[1]=((RadioButton)(weapons.getSelectedToggle())).getText();
             finalGuess[2] = ((RadioButton)(people.getSelectedToggle())).getText();
+            Label win = new Label(currentPlayer.getName() + " has won the game!\nThe answer was " + finalGuess[0] + ", " + finalGuess[1] + ", " + finalGuess[2]);
+            Label lose = new Label(currentPlayer.getName() + " was wrong!");
+            Label allLose = new Label("EVERYONE WAS WRONG");
             for(int i=0; i<3; i++){
                 //System.out.println(finalGuess[i]);
             }
@@ -661,7 +661,7 @@ public class MainFile extends Application {
         weaponLayout.getChildren().addAll(weaponLabel, knife, gun, candlestick, leadPipe, wrench, rope, submit);
         peopleLayout.getChildren().addAll(personLabel, plum, green, mustard, scarlet, white, peacock);
 
-        Scene scene1= new Scene(mainLayout, 400, 250);
+        Scene scene1= new Scene(mainLayout, 400, 300);
         s.setScene(scene1);
 
         s.show();
