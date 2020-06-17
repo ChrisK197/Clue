@@ -24,6 +24,8 @@ public class MainFile extends Application {
     private boolean p2Out = false;
     private boolean p3Out = false;
     private boolean p4Out = false;
+    private boolean p5Out = false;
+    private boolean p6Out = false;
 
     private boolean weaponAns = false;
     private boolean personAns = false;
@@ -43,6 +45,8 @@ public class MainFile extends Application {
     private Player p2;
     private Player p3;
     private Player p4;
+    private Player p5;
+    private Player p6;
     private ArrayList<Card> envelope;
     private Pane mainPane;
 
@@ -96,7 +100,23 @@ public class MainFile extends Application {
         p4view.setY(150);
         mainPane.getChildren().add(p4view);
 
-        envelope = distributeCards(p1, p2, p3, p4);
+        p5 = new Player(new Image("peacock.png"), "Mrs. Peacock", 5, 197);
+        ImageView p5view = p5.getImageView();
+        p5view.setFitWidth(20);
+        p5view.setFitHeight(20);
+        p5view.setX(45);
+        p5view.setY(700);
+        mainPane.getChildren().add(p5view);
+
+        p6 = new Player(new Image("white.png"), "Mrs. White", 6, 184);
+        ImageView p6view = p6.getImageView();
+        p6view.setFitWidth(20);
+        p6view.setFitHeight(20);
+        p6view.setX(420);
+        p6view.setY(785);
+        mainPane.getChildren().add(p6view);
+
+        envelope = distributeCards(p1, p2, p3, p4, p5, p6);
 
         //We are using a graph.txt now
         try{createGraph();}
@@ -428,6 +448,12 @@ public class MainFile extends Application {
                 turnCounter=3;
             }
             if(p4Out && turnCounter==3){
+                turnCounter=4;
+            }
+            if (p5Out && turnCounter==4) {
+                turnCounter=5;
+            }
+            if (p6Out && turnCounter==5) {
                 turnCounter=0;
             }
             //this is duplicated because if players 1 and 4 are out it could get weird.
@@ -441,6 +467,12 @@ public class MainFile extends Application {
                 turnCounter=3;
             }
             if(p4Out && turnCounter==3){
+                turnCounter=4;
+            }
+            if (p5Out && turnCounter==4) {
+                turnCounter=5;
+            }
+            if (p6Out && turnCounter==5) {
                 turnCounter=0;
             }
             diceRoll.setDisable(true);
@@ -465,11 +497,25 @@ public class MainFile extends Application {
                 move(p3, roll);
                 turnCounter++;
             }
-            else {
+            else if (turnCounter == 3) {
                 currentPlayer = p4;
                 currPlayerText.setText("Current Player: 4");
                 int roll = p4.move();
                 move(p4, roll);
+                turnCounter++;
+            }
+            else if (turnCounter == 4) {
+                currentPlayer = p5;
+                currPlayerText.setText("Current Player: 5");
+                int roll = p5.move();
+                move(p5, roll);
+                turnCounter++;
+            }
+            else {
+                currentPlayer = p6;
+                currPlayerText.setText("Current Player: 6");
+                int roll = p6.move();
+                move(p6, roll);
                 turnCounter = 0;
             }
         });
@@ -480,7 +526,7 @@ public class MainFile extends Application {
         currPlayerText = new Label("Current Player: " + "1");
         mainPane.getChildren().add(currPlayerText);
         currPlayerText.setLayoutX(660);
-        currPlayerText.setLayoutY(225);
+        currPlayerText.setLayoutY(350);
 
         Button finalGuess = new Button("Final Guess");
         mainPane.getChildren().add(finalGuess);
@@ -633,12 +679,22 @@ public class MainFile extends Application {
                     turnCounter++;
                     currentPlayer=p4;
                 }
-                else if (currentPlayer.getNum()==4){
+                else if(currentPlayer.getNum()==4){
                     p4Out=true;
+                    turnCounter++;
+                    currentPlayer=p5;
+                }
+                else if(currentPlayer.getNum()==5){
+                    p5Out=true;
+                    turnCounter++;
+                    currentPlayer=p6;
+                }
+                else if (currentPlayer.getNum()==6){
+                    p6Out=true;
                     turnCounter=0;
                     currentPlayer=p1;
                 }
-                if(p1Out && p2Out && p3Out && p4Out){
+                if(p1Out && p2Out && p3Out && p4Out && p5Out && p6Out){
                     v.getChildren().remove(lose);
                     v.getChildren().add(allLose);
                     mainPane.getChildren().removeAll();
@@ -734,11 +790,13 @@ public class MainFile extends Application {
         peacock.setOnAction(e-> personChosen(submit));
 
         //players
-        RadioButton player1, player2, player3, player4;
+        RadioButton player1, player2, player3, player4, player5, player6;
         player1 =new RadioButton("Player 1");
         player2= new RadioButton("Player 2");
         player3= new RadioButton("Player 3");
         player4= new RadioButton("Player 4");
+        player5= new RadioButton("Player 5");
+        player6= new RadioButton("Player 6");
 
         ToggleGroup player = new ToggleGroup();
 
@@ -746,6 +804,8 @@ public class MainFile extends Application {
         player2.setToggleGroup(player);
         player3.setToggleGroup(player);
         player4.setToggleGroup(player);
+        player5.setToggleGroup(player);
+        player6.setToggleGroup(player);
 
         int pNum = p.getNum();
         if(pNum==1){
@@ -760,10 +820,18 @@ public class MainFile extends Application {
         else if (pNum==4){
             player4.setDisable(true);
         }
+        else if (pNum==5){
+            player5.setDisable(true);
+        }
+        else if (pNum==6){
+            player6.setDisable(true);
+        }
         player1.setOnAction(e -> playerChosen(submit));
         player2.setOnAction(e-> playerChosen(submit));
         player3.setOnAction(e-> playerChosen(submit));
         player4.setOnAction(e-> playerChosen(submit));
+        player5.setOnAction(e-> playerChosen(submit));
+        player6.setOnAction(e-> playerChosen(submit));
 
         submit.setOnAction(e->{
             currGuess[0] = ((RadioButton)(player.getSelectedToggle())).getText();
@@ -784,11 +852,11 @@ public class MainFile extends Application {
         VBox peopleLayout = new VBox(5);
 
         mainLayout.getChildren().addAll(playerLayout, weaponLayout, peopleLayout);
-        playerLayout.getChildren().addAll(playerLabel, player1, player2, player3, player4, turn);
+        playerLayout.getChildren().addAll(playerLabel, player1, player2, player3, player4, player5, player6, turn);
         weaponLayout.getChildren().addAll(weaponLabel, knife, gun, candlestick, leadPipe, wrench, rope, submit, labelresponse);
         peopleLayout.getChildren().addAll(personLabel, plum, green, mustard, scarlet, white, peacock);
 
-        Scene scene1= new Scene(mainLayout, 450, 250);
+        Scene scene1= new Scene(mainLayout, 450, 300);
         stage.setScene(scene1);
 
         stage.show();
@@ -871,7 +939,7 @@ public class MainFile extends Application {
         }
         else if(currGuess[0].equals("Player 4")){
             for(int i=0; i<(p4.getCards()).length; i++){
-                //System.out.println((p4.getCards())[i]);
+                //System.out.println((p3.getCards())[i]);
             }
             for(int i=0; i<(p4.getCards()).length; i++){
                 //weapon check
@@ -885,6 +953,48 @@ public class MainFile extends Application {
                     person = new RadioButton(currGuess[2]);
                 }
                 else if((((p4.getCards())[i]).getName()).equals(currGuess[3])){
+                    numOfCards++;
+                    room = new RadioButton(currGuess[3]);
+                }
+            }
+        }
+        else if(currGuess[0].equals("Player 5")){
+            for(int i=0; i<(p5.getCards()).length; i++){
+                //System.out.println((p3.getCards())[i]);
+            }
+            for(int i=0; i<(p5.getCards()).length; i++){
+                //weapon check
+                if((((p5.getCards())[i]).getName()).equals(currGuess[1])){
+                    numOfCards++;
+                    weapon = new RadioButton(currGuess[1]);
+                }
+                //person
+                else if((((p5.getCards())[i]).getName()).equals(currGuess[2])){
+                    numOfCards++;
+                    person = new RadioButton(currGuess[2]);
+                }
+                else if((((p5.getCards())[i]).getName()).equals(currGuess[3])){
+                    numOfCards++;
+                    room = new RadioButton(currGuess[3]);
+                }
+            }
+        }
+        else if(currGuess[0].equals("Player 6")){
+            for(int i=0; i<(p6.getCards()).length; i++){
+                //System.out.println((p4.getCards())[i]);
+            }
+            for(int i=0; i<(p6.getCards()).length; i++){
+                //weapon check
+                if((((p6.getCards())[i]).getName()).equals(currGuess[1])){
+                    numOfCards++;
+                    weapon = new RadioButton(currGuess[1]);
+                }
+                //person
+                else if((((p6.getCards())[i]).getName()).equals(currGuess[2])){
+                    numOfCards++;
+                    person = new RadioButton(currGuess[2]);
+                }
+                else if((((p6.getCards())[i]).getName()).equals(currGuess[3])){
                     numOfCards++;
                     room = new RadioButton(currGuess[3]);
                 }
@@ -980,7 +1090,7 @@ public class MainFile extends Application {
         }
     }
 
-    private ArrayList<Card> distributeCards(Player p1, Player p2, Player p3, Player p4){ //21 cards total, 18 after the 3 are placed in the envelope
+    private ArrayList<Card> distributeCards(Player p1, Player p2, Player p3, Player p4, Player p5, Player p6){ //21 cards total, 18 after the 3 are placed in the envelope
         //Takes the player objects and returns the envelope
         String[] people = {"Professor Plum", "Mr. Green", "Colonel Mustard", "Miss Scarlet", "Mrs. White", "Mrs. Peacock"};
         String[] weapons = {"Gun", "Candlestick", "Rope", "Knife", "Lead Pipe", "Wrench"};
@@ -1005,7 +1115,7 @@ public class MainFile extends Application {
         envelope.add(roomCards.remove((int)(Math.random() * roomCards.size())));
 
         int total = peopleCards.size() + weaponCards.size() + roomCards.size();
-        Player[] p = {p1, p2, p3, p4};
+        Player[] p = {p1, p2, p3, p4, p5, p6};
         int currplayer = 0; // Players 1 and 2 will always have one extra card
         ArrayList<Card> arr;
         while(peopleCards.size() != 0 || weaponCards.size() != 0 || roomCards.size() != 0){
@@ -1022,7 +1132,7 @@ public class MainFile extends Application {
             p[currplayer].addCard(arr.remove(num));
             total = peopleCards.size() + weaponCards.size() + roomCards.size();
             currplayer++;
-            if(currplayer >= 4)
+            if(currplayer >= 6)
                 currplayer = 0;
         }
 
@@ -1090,6 +1200,42 @@ public class MainFile extends Application {
             Pane pane = new Pane();
             Text t1 = new Text(25, 50, "Player 4's Cards:");
             Text t2 = new Text(25, 250, p4.getCardsAsStringNL());
+            t1.setFont(new Font(22));
+            t2.setFont(new Font(22));
+            pane.getChildren().addAll(t1, t2);
+            Scene ss = new Scene(pane, 250, 500);
+            stage.setScene(ss);
+            stage.show();
+        });
+
+        Button p5Cards = new Button("Player 5 Cards");
+        mainPane.getChildren().add(p5Cards);
+        p5Cards.setLayoutX(660);
+        p5Cards.setLayoutY(200);
+        p5Cards.setOnAction(e->{
+            Stage stage = new Stage();
+            stage.setTitle("Player 5's Hand");
+            Pane pane = new Pane();
+            Text t1 = new Text(25, 50, "Player 5's Cards:");
+            Text t2 = new Text(25, 250, p5.getCardsAsStringNL());
+            t1.setFont(new Font(22));
+            t2.setFont(new Font(22));
+            pane.getChildren().addAll(t1, t2);
+            Scene ss = new Scene(pane, 250, 500);
+            stage.setScene(ss);
+            stage.show();
+        });
+
+        Button p6Cards = new Button("Player 6 Cards");
+        mainPane.getChildren().add(p6Cards);
+        p6Cards.setLayoutX(660);
+        p6Cards.setLayoutY(250);
+        p6Cards.setOnAction(e->{
+            Stage stage = new Stage();
+            stage.setTitle("Player 6's Hand");
+            Pane pane = new Pane();
+            Text t1 = new Text(25, 50, "Player 6's Cards:");
+            Text t2 = new Text(25, 250, p6.getCardsAsStringNL());
             t1.setFont(new Font(22));
             t2.setFont(new Font(22));
             pane.getChildren().addAll(t1, t2);

@@ -29,11 +29,15 @@ public class Player {
         this.name = name;
         this.num = num;
         currentSpace = currSpace;
-        //Players 1 and 2 will always have one more card than Players 3 and 4
+        cards = new Card[3];
+
+        /*Players 1 and 2 will always have one more card than Players 3 and 4
         if(num == 1 || num == 2)
             cards = new Card[5];
         else
             cards = new Card[4];
+
+         */
     }
 
     public void addCard(Card c){

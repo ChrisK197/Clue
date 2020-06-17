@@ -12,6 +12,10 @@ public class Room extends Tile{
     private double p3y;
     private double p4x;
     private double p4y;
+    private double p5x;
+    private double p5y;
+    private double p6x;
+    private double p6y;
     private ImageView imageView;
 
     public Room(int x, int y, int num, String name, String im){
@@ -41,6 +45,12 @@ public class Room extends Tile{
         }
         else if(p.getNum() == 4){
             i.setX(p4x); i.setY(p4y);
+        }
+        else if(p.getNum() == 5){
+            i.setX(p5x); i.setY(p5y);
+        }
+        else if(p.getNum() == 6){
+            i.setX(p6x); i.setY(p6y);
         }
     }
 
@@ -124,6 +134,38 @@ public class Room extends Tile{
 
     public void setP4y(double p4y) {
         this.p4y = p4y;
+    }
+
+    public double getP5x() {
+        return p5x;
+    }
+
+    public void setP5x(double p5x) {
+        this.p5x = p5x;
+    }
+
+    public double getP5y() {
+        return p5y;
+    }
+
+    public void setp5y(double p5y) {
+        this.p5y = p5y;
+    }
+
+    public double getP6x() {
+        return p6x;
+    }
+
+    public void setP6x(double p6x) {
+        this.p6x = p6x;
+    }
+
+    public double getP6y() {
+        return p6y;
+    }
+
+    public void setP6y(double p6y) {
+        this.p6y = p6y;
     }
 
     public String getName() {
