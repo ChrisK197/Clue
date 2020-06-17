@@ -715,6 +715,9 @@ public class MainFile extends Application {
         library.setOnAction(e-> roomChosen(submit));
 
         submit.setOnAction(e->{
+            weaponFinalAns=false;
+            personFinalAns=false;
+            roomFinalAns=false;
             //System.out.println("Correct Answer: ");
             for(int i=0; i<3; i++){
                 //System.out.println(envelope.get(i));
@@ -738,27 +741,27 @@ public class MainFile extends Application {
                 v.getChildren().add(lose);
                 if(currentPlayer.getNum()==1){
                     p1Out=true;
-                    turnCounter++;
+                    turnCounter=1;
                     currentPlayer=p2;
                 }
                 else if (currentPlayer.getNum()==2){
                     p2Out=true;
-                    turnCounter++;
+                    turnCounter=2;
                     currentPlayer=p3;
                 }
                 else if(currentPlayer.getNum()==3){
                     p3Out=true;
-                    turnCounter++;
+                    turnCounter=3;
                     currentPlayer=p4;
                 }
                 else if(currentPlayer.getNum()==4){
                     p4Out=true;
-                    turnCounter++;
+                    turnCounter=4;
                     currentPlayer=p5;
                 }
                 else if(currentPlayer.getNum()==5){
                     p5Out=true;
-                    turnCounter++;
+                    turnCounter=5;
                     currentPlayer=p6;
                 }
                 else if (currentPlayer.getNum()==6){
@@ -906,6 +909,9 @@ public class MainFile extends Application {
         player6.setOnAction(e-> playerChosen(submit));
 
         submit.setOnAction(e->{
+            weaponAns=false;
+            personAns=false;
+            playerAns=false;
             currGuess[0] = ((RadioButton)(player.getSelectedToggle())).getText();
             currGuess[1]=((RadioButton)(weapons.getSelectedToggle())).getText();
             currGuess[2] = ((RadioButton)(people.getSelectedToggle())).getText();
