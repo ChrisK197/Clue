@@ -47,6 +47,7 @@ public class MainFile extends Application {
     private Pane mainPane;
 
     private int turnCounter = 0;
+    private Label currPlayerText;
 
     public void start(Stage ps){
         mainPane = new Pane();
@@ -445,24 +446,28 @@ public class MainFile extends Application {
             diceRoll.setDisable(true);
             if (turnCounter == 0) {
                 currentPlayer = p1;
+                currPlayerText.setText("Current Player: 1");
                 int roll = p1.move();
                 move(p1, roll);
                 turnCounter++;
             }
             else if (turnCounter == 1) {
                 currentPlayer = p2;
+                currPlayerText.setText("Current Player: 2");
                 int roll = p2.move();
                 move(p2, roll);
                 turnCounter++;
             }
             else if (turnCounter == 2) {
                 currentPlayer = p3;
+                currPlayerText.setText("Current Player: 3");
                 int roll = p3.move();
                 move(p3, roll);
                 turnCounter++;
             }
             else {
                 currentPlayer = p4;
+                currPlayerText.setText("Current Player: 4");
                 int roll = p4.move();
                 move(p4, roll);
                 turnCounter = 0;
@@ -471,6 +476,11 @@ public class MainFile extends Application {
         mainPane.getChildren().add(diceRoll);
         diceRoll.setLayoutX(287);
         diceRoll.setLayoutY(275);
+
+        currPlayerText = new Label("Current Player: " + "1");
+        mainPane.getChildren().add(currPlayerText);
+        currPlayerText.setLayoutX(660);
+        currPlayerText.setLayoutY(225);
 
         Button finalGuess = new Button("Final Guess");
         mainPane.getChildren().add(finalGuess);
